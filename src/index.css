@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 10%;
+
+    --primary: 20 14% 10%;
+    --primary-foreground: 40 40% 98%;
+
+    --secondary: 40 30% 95%;
+    --secondary-foreground: 20 14% 10%;
+
+    --muted: 40 30% 96%;
+    --muted-foreground: 25 10% 45%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 20% 90%;
+    --input: 40 20% 90%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(38 92% 50% / 0.1), hsl(38 92% 60% / 0.05));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 30% 98%));
+    --shadow-elegant: 0 10px 40px -10px hsl(38 92% 50% / 0.15);
+    --shadow-soft: 0 4px 20px -2px hsl(20 14% 10% / 0.08);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 20 14% 5%;
+    --foreground: 40 40% 98%;
+
+    --card: 20 14% 8%;
+    --card-foreground: 40 40% 98%;
+
+    --popover: 20 14% 8%;
+    --popover-foreground: 40 40% 98%;
+
+    --primary: 40 40% 98%;
+    --primary-foreground: 20 14% 10%;
+
+    --secondary: 20 14% 12%;
+    --secondary-foreground: 40 40% 98%;
+
+    --muted: 20 14% 12%;
+    --muted-foreground: 25 10% 60%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 14% 15%;
+    --input: 20 14% 15%;
+    --ring: 38 92% 50%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(38 92% 50% / 0.15), hsl(38 92% 60% / 0.08));
+    --gradient-card: linear-gradient(180deg, hsl(20 14% 8%), hsl(20 14% 10%));
+    --shadow-elegant: 0 10px 40px -10px hsl(38 92% 50% / 0.2);
+    --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
