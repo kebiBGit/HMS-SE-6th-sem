@@ -42,89 +42,172 @@
       };
     </script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/about.css" />
   </head>
-  <body class="bg-background text-foreground">
+  <body class="about-body">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <a href="index.html" class="flex items-center space-x-2 group">
-            <i data-lucide="hotel" class="h-8 w-8 text-accent transition-transform group-hover:scale-110"></i>
-            <span class="text-xl font-serif font-bold text-foreground">Himalayan Haven</span>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-row">
+          <a href="index.html" class="navbar-brand">
+            <i data-lucide="hotel" class="navbar-logo"></i>
+            <span class="navbar-title">Himalayan Haven</span>
           </a>
-          <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="text-foreground hover:text-accent transition-colors font-medium">Home</a>
-            <a href="rooms.html" class="text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-            <a href="about.html" class="text-foreground hover:text-accent transition-colors font-medium">About</a>
-            <a href="contact.html" class="text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-            <a href="#auth" class="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+          <div class="navbar-links">
+            <a href="index.html" class="navbar-link">Home</a>
+            <a href="rooms.html" class="navbar-link">Rooms</a>
+            <a href="about.html" class="navbar-link">About</a>
+            <a href="contact.html" class="navbar-link">Contact</a>
+            <a href="signin.html" class="navbar-signin">Sign In</a>
           </div>
-          <button id="mobile-menu-button" class="md:hidden p-2 text-foreground hover:text-accent transition-colors" aria-label="Menu">
-            <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
-            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          <button id="mobile-menu-button" class="navbar-mobile-btn" aria-label="Menu">
+            <i data-lucide="menu" class="navbar-mobile-icon" id="menu-icon"></i>
+            <i data-lucide="x" class="navbar-mobile-icon navbar-mobile-close" id="close-icon"></i>
           </button>
         </div>
-        <div id="mobile-menu" class="md:hidden pb-4 space-y-2 hidden animate-fade-in">
-          <a href="index.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Home</a>
-          <a href="rooms.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-          <a href="about.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">About</a>
-          <a href="contact.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-          <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+        <div id="mobile-menu" class="navbar-mobile-menu">
+          <a href="index.html" class="navbar-mobile-link">Home</a>
+          <a href="rooms.html" class="navbar-mobile-link">Rooms</a>
+          <a href="about.html" class="navbar-mobile-link">About</a>
+          <a href="contact.html" class="navbar-mobile-link">Contact</a>
+          <a href="signin.html" class="navbar-mobile-signin">Sign In</a>
         </div>
       </div>
     </nav>
 
-    <main class="flex-grow pt-24 pb-12">
-      <section class="py-20 bg-gradient-hero" id="about">
-        <div class="container mx-auto px-4">
-          <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-4xl font-serif font-bold mb-6">About Himalayan Haven</h2>
-            <p class="text-lg text-muted-foreground mb-8">For over 50 years, Himalayan Haven has been the epitome of luxury and elegance. Our commitment to exceptional service and attention to detail ensures every guest experiences the finest hospitality.</p>
-            <a href="#about" class="px-5 py-2 rounded-md border border-border hover:bg-muted">Learn More About Us</a>
-          </div>
+    <main class="about-main">
+      <div class="about-container">
+        <!-- Hero Section -->
+        <div class="about-hero">
+          <h1 class="about-hero-title">About Himalayan Haven</h1>
+          <p class="about-hero-subtitle">
+            A legacy of excellence in hospitality since 1970
+          </p>
         </div>
-      </section>
+
+        <!-- Story Section -->
+        <section class="about-story-section">
+          <div class="about-story-content">
+            <h2 class="about-section-title">Our Story</h2>
+            <div class="about-story-text">
+              <p>
+                For over five decades, Himalayan Haven has stood as a beacon of luxury and elegance
+                in the heart of the city. What began as a vision to create an unparalleled
+                hospitality experience has evolved into a landmark destination known for its
+                impeccable service and timeless charm.
+              </p>
+              <p>
+                Our commitment to excellence extends beyond our beautifully appointed rooms
+                and world-class amenities. We believe in creating memories that last a lifetime,
+                ensuring every guest feels valued and cared for from the moment they arrive.
+              </p>
+              <p>
+                Today, Himalayan Haven continues to set the standard for luxury accommodation,
+                blending traditional elegance with modern comforts to provide an experience
+                that is both refined and welcoming.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="about-values-section">
+          <h2 class="about-section-title-center">Our Values</h2>
+          <div class="about-values-grid">
+            <div class="about-value-card">
+              <i data-lucide="award" class="about-value-icon"></i>
+              <h3 class="about-value-title">Excellence</h3>
+              <p class="about-value-description">We strive for perfection in every detail, from service to amenities.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="users" class="about-value-icon"></i>
+              <h3 class="about-value-title">Community</h3>
+              <p class="about-value-description">Building lasting relationships with our guests and local community.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="globe" class="about-value-icon"></i>
+              <h3 class="about-value-title">Sustainability</h3>
+              <p class="about-value-description">Committed to environmental responsibility and sustainable practices.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="heart" class="about-value-icon"></i>
+              <h3 class="about-value-title">Care</h3>
+              <p class="about-value-description">Treating every guest with warmth, respect, and genuine hospitality.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="about-team-section">
+          <h2 class="about-section-title-center">Our Team</h2>
+          <div class="about-team-content">
+            <p class="about-team-text">
+              Behind every exceptional experience is our dedicated team of hospitality professionals.
+              With years of combined experience, our staff is committed to making your stay
+              memorable and comfortable.
+            </p>
+            <p class="about-team-text">
+              From our concierge service to housekeeping, every member of the Himalayan Haven family
+              takes pride in delivering personalized service that exceeds expectations.
+            </p>
+          </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="about-location-section">
+          <h2 class="about-section-title-center">Location</h2>
+          <p class="about-location-intro">
+            Located in the serene Mustang region, Himalayan Haven offers easy access to natural
+            beauty, cultural landmarks, and breathtaking mountain vistas.
+          </p>
+          <div class="about-location-card">
+            <p class="about-location-address">Mustang-4, Nepal</p>
+            <p class="about-location-info">Phone: +977-9812345678</p>
+            <p class="about-location-info">Email: info@himalayanhaven.com</p>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-primary text-primary-foreground mt-16">
-      <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
           <div>
-            <div class="flex items-center space-x-2 mb-4">
-              <i data-lucide="hotel" class="h-8 w-8 text-accent"></i>
-              <span class="text-xl font-serif font-bold">Himalayan Haven</span>
+            <div class="footer-brand">
+              <i data-lucide="hotel" class="footer-brand-icon"></i>
+              <span class="footer-brand-text">Himalayan Haven</span>
             </div>
-            <p class="text-sm text-primary-foreground/80">Experience luxury and comfort in the heart of the city.</p>
+            <p class="footer-description">Experience luxury and comfort in the heart of the city.</p>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Quick Links</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
-              <li><a href="rooms.html" class="hover:text-accent transition-colors">Rooms</a></li>
-              <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
-              <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-list">
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="rooms.html" class="footer-link">Rooms</a></li>
+              <li><a href="about.html" class="footer-link">About</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Contact</h3>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center space-x-2"><i data-lucide="phone" class="h-4 w-4 text-accent"></i><span>+977-9812345678</span></li>
-              <li class="flex items-center space-x-2"><i data-lucide="mail" class="h-4 w-4 text-accent"></i><span>info@himalayanhaven.com</span></li>
-              <li class="flex items-center space-x-2"><i data-lucide="map-pin" class="h-4 w-4 text-accent"></i><span>Mustang-4, Nepal</span></li>
+            <h3 class="footer-heading">Contact</h3>
+            <ul class="footer-list">
+              <li class="footer-contact-item"><i data-lucide="phone" class="footer-contact-icon"></i><span>+977-9812345678</span></li>
+              <li class="footer-contact-item"><i data-lucide="mail" class="footer-contact-icon"></i><span>info@himalayanhaven.com</span></li>
+              <li class="footer-contact-item"><i data-lucide="map-pin" class="footer-contact-icon"></i><span>Mustang-4, Nepal</span></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Policies</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Terms of Service</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Cancellation Policy</a></li>
+            <h3 class="footer-heading">Policies</h3>
+            <ul class="footer-list">
+              <li><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-link">Terms of Service</a></li>
+              <li><a href="#" class="footer-link">Cancellation Policy</a></li>
             </ul>
           </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-sm">
+        <div class="footer-bottom">
           <p>&copy; 2025 Himalayan Haven. All rights reserved.</p>
         </div>
       </div>
@@ -132,4 +215,15 @@
 
     <script src="static/js/site.js"></script>
   </body>
+  </html>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var path = location.pathname.split('/').pop();
+    document.querySelectorAll('.navbar-link').forEach(function(link) {
+      if (link.getAttribute('href') === path) {
+        link.classList.add('active');
+      }
+    });
+  });
+  </script>
 </html>

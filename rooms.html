@@ -42,48 +42,49 @@
       };
     </script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/rooms.css" />
   </head>
-  <body class="bg-background text-foreground">
+  <body class="rooms-body">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <a href="index.html" class="flex items-center space-x-2 group">
-            <i data-lucide="hotel" class="h-8 w-8 text-accent transition-transform group-hover:scale-110"></i>
-            <span class="text-xl font-serif font-bold text-foreground">Himalayan Haven</span>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-row">
+          <a href="index.html" class="navbar-brand">
+            <i data-lucide="hotel" class="navbar-logo"></i>
+            <span class="navbar-title">Himalayan Haven</span>
           </a>
-          <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="text-foreground hover:text-accent transition-colors font-medium">Home</a>
-            <a href="rooms.html" class="text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-            <a href="about.html" class="text-foreground hover:text-accent transition-colors font-medium">About</a>
-            <a href="contact.html" class="text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-            <a href="#auth" class="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+          <div class="navbar-links">
+            <a href="index.html" class="navbar-link">Home</a>
+            <a href="rooms.html" class="navbar-link">Rooms</a>
+            <a href="about.html" class="navbar-link">About</a>
+            <a href="contact.html" class="navbar-link">Contact</a>
+            <a href="#auth" class="navbar-signin">Sign In</a>
           </div>
-          <button id="mobile-menu-button" class="md:hidden p-2 text-foreground hover:text-accent transition-colors" aria-label="Menu">
-            <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
-            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          <button id="mobile-menu-button" class="navbar-mobile-btn" aria-label="Menu">
+            <i data-lucide="menu" class="navbar-mobile-icon" id="menu-icon"></i>
+            <i data-lucide="x" class="navbar-mobile-icon navbar-mobile-close" id="close-icon"></i>
           </button>
         </div>
-        <div id="mobile-menu" class="md:hidden pb-4 space-y-2 hidden animate-fade-in">
-          <a href="index.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Home</a>
-          <a href="rooms.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-          <a href="about.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">About</a>
-          <a href="contact.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-          <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+        <div id="mobile-menu" class="navbar-mobile-menu">
+          <a href="index.html" class="navbar-mobile-link">Home</a>
+          <a href="rooms.html" class="navbar-mobile-link">Rooms</a>
+          <a href="about.html" class="navbar-mobile-link">About</a>
+          <a href="contact.html" class="navbar-mobile-link">Contact</a>
+          <a href="#auth" class="navbar-mobile-signin">Sign In</a>
         </div>
       </div>
     </nav>
 
-    <main class="flex-grow pt-24 pb-12">
-      <div class="container mx-auto px-4">
-        <div class="mb-12 text-center">
-          <h1 class="text-5xl font-serif font-bold mb-4">Our Rooms &amp; Suites</h1>
-          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">Choose from our collection of elegantly designed rooms and suites</p>
+    <main class="rooms-main">
+      <div class="rooms-container">
+        <div class="rooms-header">
+          <h1 class="rooms-title">Our Rooms &amp; Suites</h1>
+          <p class="rooms-subtitle">Choose from our collection of elegantly designed rooms and suites</p>
         </div>
 
-        <div class="mb-8 flex justify-center">
-          <select id="typeFilter" class="w-64 px-3 py-2 rounded-md border border-input bg-background">
+        <div class="rooms-filter-wrapper">
+          <select id="typeFilter" class="rooms-filter">
             <option value="all">All Rooms</option>
             <option value="single">Single</option>
             <option value="double">Double</option>
@@ -93,32 +94,32 @@
           </select>
         </div>
 
-        <div id="roomsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="roomsGrid" class="rooms-grid">
           <!-- Suite -->
           <div class="room-card" data-type="suite">
-            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
-              <div class="relative overflow-hidden h-64">
-                <img src="static/images/hero-hotel.jpg" alt="Executive Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Suite</span>
+            <div class="room-card-inner">
+              <div class="room-image-wrapper">
+                <img src="static/images/hero-hotel.jpg" alt="Executive Suite" class="room-image" />
+                <span class="room-type-badge">Most Popular</span>
               </div>
-              <div class="p-6">
-                <h3 class="font-serif text-2xl font-semibold">Executive Suite</h3>
-                <p class="text-sm text-muted-foreground mt-1">Spacious suite with mountain view, king bed, and luxury amenities.</p>
-                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
-                  <i data-lucide="users" class="h-4 w-4"></i>
+              <div class="room-details">
+                <h3 class="room-name">Executive Suite</h3>
+                <p class="room-description">Spacious suite with mountain view, king bed, and luxury amenities.</p>
+                <div class="room-guests">
+                  <i data-lucide="users" class="room-guests-icon"></i>
                   <span>Up to 4 guests</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="tv" class="h-4 w-4"></i><span>TV</span></div>
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Coffee Maker</span></div>
+                <div class="room-amenities">
+                  <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+                  <div class="room-amenity"><i data-lucide="tv" class="room-amenity-icon"></i><span>TV</span></div>
+                  <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Coffee Maker</span></div>
                 </div>
-                <div class="mt-6 flex items-center justify-between">
+                <div class="room-footer">
                   <div>
-                    <p class="text-sm text-muted-foreground">From</p>
-                    <p class="text-2xl font-bold text-accent">$120<span class="text-sm text-muted-foreground">/night</span></p>
+                    <p class="room-price-label">From</p>
+                    <p class="room-price">Rs.3200<span class="room-price-unit">/night</span></p>
                   </div>
-                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                  <a href="#" class="room-book-btn">Book Now</a>
                 </div>
               </div>
             </div>
@@ -126,28 +127,28 @@
 
           <!-- Single -->
           <div class="room-card" data-type="single">
-            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
-              <div class="relative overflow-hidden h-64">
-                <img src="static/images/hero-hotel.jpg" alt="Single Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Single</span>
+            <div class="room-card-inner">
+              <div class="room-image-wrapper">
+                <img src="static/images/hero-hotel.jpg" alt="Single Room" class="room-image" />
+                <span class="room-type-badge">Single</span>
               </div>
-              <div class="p-6">
-                <h3 class="font-serif text-2xl font-semibold">Classic Single Room</h3>
-                <p class="text-sm text-muted-foreground mt-1">Cozy room perfect for solo travelers with essential comforts.</p>
-                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
-                  <i data-lucide="users" class="h-4 w-4"></i>
+              <div class="room-details">
+                <h3 class="room-name">Classic Single Room</h3>
+                <p class="room-description">Cozy room perfect for solo travelers with essential comforts.</p>
+                <div class="room-guests">
+                  <i data-lucide="users" class="room-guests-icon"></i>
                   <span>Up to 1 guest</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Tea/Coffee</span></div>
+                <div class="room-amenities">
+                  <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+                  <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Tea/Coffee</span></div>
                 </div>
-                <div class="mt-6 flex items-center justify-between">
+                <div class="room-footer">
                   <div>
-                    <p class="text-sm text-muted-foreground">From</p>
-                    <p class="text-2xl font-bold text-accent">$60<span class="text-sm text-muted-foreground">/night</span></p>
+                    <p class="room-price-label">From</p>
+                    <p class="room-price">Rs.1000<span class="room-price-unit">/night</span></p>
                   </div>
-                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                  <a href="#" class="room-book-btn">Book Now</a>
                 </div>
               </div>
             </div>
@@ -155,28 +156,28 @@
 
           <!-- Double -->
           <div class="room-card" data-type="double">
-            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
-              <div class="relative overflow-hidden h-64">
-                <img src="static/images/hero-hotel.jpg" alt="Double Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Double</span>
+            <div class="room-card-inner">
+              <div class="room-image-wrapper">
+                <img src="static/images/hero-hotel.jpg" alt="Double Room" class="room-image" />
+                <span class="room-type-badge">Double</span>
               </div>
-              <div class="p-6">
-                <h3 class="font-serif text-2xl font-semibold">Comfort Double Room</h3>
-                <p class="text-sm text-muted-foreground mt-1">Ideal for couples with a queen bed and modern amenities.</p>
-                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
-                  <i data-lucide="users" class="h-4 w-4"></i>
+              <div class="room-details">
+                <h3 class="room-name">Comfort Double Room</h3>
+                <p class="room-description">Ideal for couples with a queen bed and modern amenities.</p>
+                <div class="room-guests">
+                  <i data-lucide="users" class="room-guests-icon"></i>
                   <span>Up to 2 guests</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
-                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="tv" class="h-4 w-4"></i><span>Smart TV</span></div>
+                <div class="room-amenities">
+                  <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+                  <div class="room-amenity"><i data-lucide="tv" class="room-amenity-icon"></i><span>Smart TV</span></div>
                 </div>
-                <div class="mt-6 flex items-center justify-between">
+                <div class="room-footer">
                   <div>
-                    <p class="text-sm text-muted-foreground">From</p>
-                    <p class="text-2xl font-bold text-accent">$80<span class="text-sm text-muted-foreground">/night</span></p>
+                    <p class="room-price-label">From</p>
+                    <p class="room-price">Rs.1800<span class="room-price-unit">/night</span></p>
                   </div>
-                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                  <a href="#" class="room-book-btn">Book Now</a>
                 </div>
               </div>
             </div>
@@ -203,7 +204,7 @@
                 <div class="mt-6 flex items-center justify-between">
                   <div>
                     <p class="text-sm text-muted-foreground">From</p>
-                    <p class="text-2xl font-bold text-accent">$100<span class="text-sm text-muted-foreground">/night</span></p>
+                    <p class="text-2xl font-bold text-accent">Rs.2400<span class="text-sm text-muted-foreground">/night</span></p>
                   </div>
                   <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
                 </div>
@@ -233,7 +234,7 @@
                 <div class="mt-6 flex items-center justify-between">
                   <div>
                     <p class="text-sm text-muted-foreground">From</p>
-                    <p class="text-2xl font-bold text-accent">$250<span class="text-sm text-muted-foreground">/night</span></p>
+                    <p class="text-2xl font-bold text-accent">Rs.4000<span class="text-sm text-muted-foreground">/night</span></p>
                   </div>
                   <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
                 </div>
@@ -259,10 +260,10 @@
           <div>
             <h3 class="font-semibold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
-              <li><a href="rooms.html" class="hover:text-accent transition-colors">Rooms</a></li>
-              <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
-              <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="rooms.html" class="footer-link">Rooms</a></li>
+              <li><a href="about.html" class="footer-link">About</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
             </ul>
           </div>
           <div>
@@ -276,9 +277,9 @@
           <div>
             <h3 class="font-semibold mb-4">Policies</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Terms of Service</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Cancellation Policy</a></li>
+              <li><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-link">Terms of Service</a></li>
+              <li><a href="#" class="footer-link">Cancellation Policy</a></li>
             </ul>
           </div>
         </div>

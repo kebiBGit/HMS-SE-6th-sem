@@ -42,112 +42,117 @@
       };
     </script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/site.css" />
+  <link rel="stylesheet" href="static/css/contact.css" />
   </head>
-  <body class="bg-background text-foreground">
+  <body class="contact-body">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <a href="index.html" class="flex items-center space-x-2 group">
-            <i data-lucide="hotel" class="h-8 w-8 text-accent transition-transform group-hover:scale-110"></i>
-            <span class="text-xl font-serif font-bold text-foreground">Himalayan Haven</span>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-row">
+          <a href="index.html" class="navbar-brand">
+            <i data-lucide="hotel" class="navbar-logo"></i>
+            <span class="navbar-title">Himalayan Haven</span>
           </a>
-          <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="text-foreground hover:text-accent transition-colors font-medium">Home</a>
-            <a href="rooms.html" class="text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-            <a href="about.html" class="text-foreground hover:text-accent transition-colors font-medium">About</a>
-            <a href="contact.html" class="text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-            <a href="#auth" class="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+          <div class="navbar-links">
+            <a href="index.html" class="navbar-link">Home</a>
+            <a href="rooms.html" class="navbar-link">Rooms</a>
+            <a href="about.html" class="navbar-link">About</a>
+            <a href="contact.html" class="navbar-link">Contact</a>
+            <a href="signin.html" class="navbar-signin">Sign In</a>
           </div>
-          <button id="mobile-menu-button" class="md:hidden p-2 text-foreground hover:text-accent transition-colors" aria-label="Menu">
-            <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
-            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          <button id="mobile-menu-button" class="navbar-mobile-btn" aria-label="Menu">
+            <i data-lucide="menu" class="navbar-mobile-icon" id="menu-icon"></i>
+            <i data-lucide="x" class="navbar-mobile-icon navbar-mobile-close" id="close-icon"></i>
           </button>
         </div>
-        <div id="mobile-menu" class="md:hidden pb-4 space-y-2 hidden animate-fade-in">
-          <a href="index.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Home</a>
-          <a href="rooms.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
-          <a href="about.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">About</a>
-          <a href="contact.html" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Contact</a>
-          <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+        <div id="mobile-menu" class="navbar-mobile-menu">
+          <a href="index.html" class="navbar-mobile-link">Home</a>
+          <a href="rooms.html" class="navbar-mobile-link">Rooms</a>
+          <a href="about.html" class="navbar-mobile-link">About</a>
+          <a href="contact.html" class="navbar-mobile-link">Contact</a>
+          <a href="signin.html" class="navbar-mobile-signin">Sign In</a>
         </div>
       </div>
     </nav>
 
-    <main class="flex-grow pt-24 pb-12">
-      <section class="py-20 bg-background" id="contact">
-        <div class="container mx-auto px-4">
-          <div class="mb-12 text-center">
-            <h1 class="text-5xl font-serif font-bold mb-4">Contact Us</h1>
-            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">We'd love to hear from you. Get in touch with us today.</p>
+    <main class="contact-main">
+      <section class="contact-section" id="contact">
+        <div class="contact-container">
+          <div class="contact-header">
+            <h1 class="contact-title">Contact Us</h1>
+            <p class="contact-subtitle">We'd love to hear from you. Get in touch with us today.</p>
           </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div class="rounded-lg shadow-soft border border-border">
-              <div class="p-6 border-b border-border">
-                <h2 class="text-2xl font-serif">Send us a Message</h2>
-                <p class="text-sm text-muted-foreground">Fill out the form and we'll get back to you shortly</p>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-card-header">
+                <h2 class="contact-card-title">Send us a Message</h2>
+                <p class="contact-card-description">Fill out the form and we'll get back to you shortly</p>
               </div>
-              <div class="p-6">
-                <form id="contactForm" class="space-y-6">
+              <div class="contact-card-body">
+                <form id="contactForm" class="contact-form">
                   <div>
-                    <label for="name" class="block text-sm font-medium mb-1">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Your name" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required class="form-input" />
                   </div>
                   <div>
-                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
-                    <input id="email" name="email" type="email" placeholder="your@email.com" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" type="email" placeholder="your@email.com" required class="form-input" />
                   </div>
                   <div>
-                    <label for="message" class="block text-sm font-medium mb-1">Message</label>
-                    <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required class="w-full px-3 py-2 rounded-md border border-input bg-background"></textarea>
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required class="form-textarea"></textarea>
                   </div>
-                  <button type="submit" class="w-full px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90" id="contactSubmit">Send Message</button>
-                  <p id="contactToast" class="hidden text-sm"></p>
+                  <button type="submit" class="form-button" id="contactSubmit">Send Message</button>
+                  <p id="contactToast" class="form-message"></p>
                 </form>
               </div>
             </div>
-            <div class="space-y-8">
-              <div class="rounded-lg shadow-soft border border-border">
-                <div class="p-6 border-b border-border">
-                  <h2 class="text-2xl font-serif">Get in Touch</h2>
-                  <p class="text-sm text-muted-foreground">Our team is available 24/7 to assist you</p>
+            <div class="info-section">
+              <div class="contact-card">
+                <div class="contact-card-header">
+                  <h2 class="contact-card-title">Get in Touch</h2>
+                  <p class="contact-card-description">Our team is available 24/7 to assist you</p>
                 </div>
-                <div class="p-6 space-y-6">
-                  <div class="flex items-start space-x-4">
-                    <i data-lucide="phone" class="h-6 w-6 text-accent mt-1"></i>
-                    <div>
-                      <p class="font-medium">Phone</p>
-                      <p class="text-muted-foreground">+977-9812345678</p>
-                      <p class="text-sm text-muted-foreground">Available 24/7</p>
+                <div class="contact-card-body">
+                  <div class="info-list">
+                    <div class="info-item">
+                      <i data-lucide="phone" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Phone</p>
+                        <p class="info-value">+977-9812345678</p>
+                        <p class="info-note">Available 24/7</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="flex items-start space-x-4">
-                    <i data-lucide="mail" class="h-6 w-6 text-accent mt-1"></i>
-                    <div>
-                      <p class="font-medium">Email</p>
-                      <p class="text-muted-foreground">info@himalayanhaven.com</p>
-                      <p class="text-sm text-muted-foreground">We reply within 24 hours</p>
+                    <div class="info-item">
+                      <i data-lucide="mail" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Email</p>
+                        <p class="info-value">info@himalayanhaven.com</p>
+                        <p class="info-note">We reply within 24 hours</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="flex items-start space-x-4">
-                    <i data-lucide="map-pin" class="h-6 w-6 text-accent mt-1"></i>
-                    <div>
-                      <p class="font-medium">Address</p>
-                      <p class="text-muted-foreground">Mustang-4, Nepal</p>
+                    <div class="info-item">
+                      <i data-lucide="map-pin" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Address</p>
+                        <p class="info-value">Mustang-4, Nepal</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="rounded-lg shadow-soft border border-border">
-                <div class="p-6 border-b border-border">
-                  <h3 class="text-xl font-serif">Operating Hours</h3>
+              <div class="contact-card">
+                <div class="contact-card-header">
+                  <h3 class="contact-card-title">Operating Hours</h3>
                 </div>
-                <div class="p-6 space-y-2">
-                  <div class="flex justify-between"><span class="text-muted-foreground">Check-in</span><span class="font-medium">3:00 PM</span></div>
-                  <div class="flex justify-between"><span class="text-muted-foreground">Check-out</span><span class="font-medium">11:00 AM</span></div>
-                  <div class="flex justify-between"><span class="text-muted-foreground">Front Desk</span><span class="font-medium">24/7</span></div>
-                  <div class="flex justify-between"><span class="text-muted-foreground">Concierge</span><span class="font-medium">24/7</span></div>
+                <div class="contact-card-body">
+                  <div class="hours-grid">
+                    <div class="hours-row"><span class="hours-label">Check-in</span><span class="hours-value">3:00 PM</span></div>
+                    <div class="hours-row"><span class="hours-label">Check-out</span><span class="hours-value">11:00 AM</span></div>
+                    <div class="hours-row"><span class="hours-label">Front Desk</span><span class="hours-value">24/7</span></div>
+                    <div class="hours-row"><span class="hours-label">Concierge</span><span class="hours-value">24/7</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,43 +162,43 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-primary text-primary-foreground mt-16">
-      <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
           <div>
-            <div class="flex items-center space-x-2 mb-4">
-              <i data-lucide="hotel" class="h-8 w-8 text-accent"></i>
-              <span class="text-xl font-serif font-bold">Himalayan Haven</span>
+            <div class="footer-brand">
+              <i data-lucide="hotel" class="footer-brand-icon"></i>
+              <span class="footer-brand-text">Himalayan Haven</span>
             </div>
-            <p class="text-sm text-primary-foreground/80">Experience luxury and comfort in the heart of the city.</p>
+            <p class="footer-description">Experience luxury and comfort in the heart of the city.</p>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Quick Links</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="index.html" class="hover:text-accent transition-colors">Home</a></li>
-              <li><a href="rooms.html" class="hover:text-accent transition-colors">Rooms</a></li>
-              <li><a href="about.html" class="hover:text-accent transition-colors">About</a></li>
-              <li><a href="contact.html" class="hover:text-accent transition-colors">Contact</a></li>
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-list">
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="rooms.html" class="footer-link">Rooms</a></li>
+              <li><a href="about.html" class="footer-link">About</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Contact</h3>
-            <ul class="space-y-2 text-sm">
-              <li class="flex items-center space-x-2"><i data-lucide="phone" class="h-4 w-4 text-accent"></i><span>+977-9812345678</span></li>
-              <li class="flex items-center space-x-2"><i data-lucide="mail" class="h-4 w-4 text-accent"></i><span>info@himalayanhaven.com</span></li>
-              <li class="flex items-center space-x-2"><i data-lucide="map-pin" class="h-4 w-4 text-accent"></i><span>Mustang-4, Nepal</span></li>
+            <h3 class="footer-heading">Contact</h3>
+            <ul class="footer-list">
+              <li class="footer-contact-item"><i data-lucide="phone" class="footer-contact-icon"></i><span>+977-9812345678</span></li>
+              <li class="footer-contact-item"><i data-lucide="mail" class="footer-contact-icon"></i><span>info@himalayanhaven.com</span></li>
+              <li class="footer-contact-item"><i data-lucide="map-pin" class="footer-contact-icon"></i><span>Mustang-4, Nepal</span></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold mb-4">Policies</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Terms of Service</a></li>
-              <li><a href="#" class="hover:text-accent transition-colors">Cancellation Policy</a></li>
+            <h3 class="footer-heading">Policies</h3>
+            <ul class="footer-list">
+              <li><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li><a href="#" class="footer-link">Terms of Service</a></li>
+              <li><a href="#" class="footer-link">Cancellation Policy</a></li>
             </ul>
           </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-sm">
+        <div class="footer-bottom">
           <p>&copy; 2025 Himalayan Haven. All rights reserved.</p>
         </div>
       </div>
@@ -201,4 +206,15 @@
 
     <script src="static/js/site.js"></script>
   </body>
+  </html>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var path = location.pathname.split('/').pop();
+    document.querySelectorAll('.navbar-link').forEach(function(link) {
+      if (link.getAttribute('href') === path) {
+        link.classList.add('active');
+      }
+    });
+  });
+  </script>
 </html>
