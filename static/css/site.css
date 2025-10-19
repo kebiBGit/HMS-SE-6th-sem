@@ -1,0 +1,4 @@
+/* Minimal custom styles; Tailwind handles most UI */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+}

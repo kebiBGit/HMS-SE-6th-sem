@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Himalayan Haven</title>
+    <meta name="description" content="Experience luxury and comfort at Himalayan Haven. Book premium rooms, suites, and exclusive accommodations with world-class amenities and exceptional service." />
+    <meta name="author" content="Himalayan Haven" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <meta name="theme-color" content="#0f172a" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          container: { center: true, padding: '2rem', screens: { '2xl': '1400px' } },
+          extend: {
+            colors: {
+              border: 'hsl(40, 20%, 90%)',
+              input: 'hsl(40, 20%, 90%)',
+              ring: 'hsl(38, 92%, 50%)',
+              background: 'hsl(0, 0%, 100%)',
+              foreground: 'hsl(20, 14%, 10%)',
+              primary: { DEFAULT: 'hsl(20, 14%, 10%)', foreground: 'hsl(40, 40%, 98%)' },
+              secondary: { DEFAULT: 'hsl(40, 30%, 95%)', foreground: 'hsl(20, 14%, 10%)' },
+              destructive: { DEFAULT: 'hsl(0, 84%, 60%)', foreground: 'hsl(0, 0%, 100%)' },
+              muted: { DEFAULT: 'hsl(40, 30%, 96%)', foreground: 'hsl(25, 10%, 45%)' },
+              accent: { DEFAULT: 'hsl(38, 92%, 50%)', foreground: 'hsl(0, 0%, 100%)' },
+              popover: { DEFAULT: 'hsl(0, 0%, 100%)', foreground: 'hsl(20, 14%, 10%)' },
+              card: { DEFAULT: 'hsl(0, 0%, 100%)', foreground: 'hsl(20, 14%, 10%)' },
+            },
+            backgroundImage: {
+              'gradient-hero': 'linear-gradient(135deg, hsl(38,92%,50%,0.1), hsl(38,92%,60%,0.05))',
+              'gradient-card': 'linear-gradient(180deg, hsl(0,0%,100%), hsl(40,30%,98%))',
+            },
+            boxShadow: {
+              'elegant': '0 10px 40px -10px hsl(38,92%,50%,0.15)',
+              'soft': '0 4px 20px -2px hsl(20,14%,10%,0.08)',
+            },
+            fontFamily: {
+              'serif': ['Playfair Display', 'serif'],
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+            },
+            borderRadius: {
+              lg: '0.75rem',
+              md: '0.625rem',
+              sm: '0.5rem',
+            },
+            animation: {
+              'fade-in': 'fade-in 0.4s ease-out',
+            },
+            keyframes: {
+              'fade-in': { from: { opacity: 0 }, to: { opacity: 1 } },
+            },
+          },
+        },
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+      body { font-family: 'Inter', system-ui, sans-serif; }
+    </style>
+  </head>
+  <body class="bg-background text-foreground">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="#" class="flex items-center space-x-2 group">
+            <i data-lucide="hotel" class="h-8 w-8 text-accent transition-transform group-hover:scale-110"></i>
+            <span class="text-xl font-serif font-bold text-foreground">Himalayan Haven</span>
+          </a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#" class="text-foreground hover:text-accent transition-colors font-medium">Home</a>
+            <a href="#rooms" class="text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
+            <a href="#about" class="text-foreground hover:text-accent transition-colors font-medium">About</a>
+            <a href="#contact" class="text-foreground hover:text-accent transition-colors font-medium">Contact</a>
+            <a href="#auth" class="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+          </div>
+          <button id="mobile-menu-button" class="md:hidden p-2 text-foreground hover:text-accent transition-colors" aria-label="Menu">
+            <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
+            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden pb-4 space-y-2 hidden animate-fade-in">
+          <a href="#" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Home</a>
+          <a href="#rooms" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Rooms</a>
+          <a href="#about" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">About</a>
+          <a href="#contact" class="block py-2 text-foreground hover:text-accent transition-colors font-medium">Contact</a>
+          <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-sm hover:opacity-90">Sign In</a>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="relative h-[100svh] flex items-center justify-center overflow-hidden" id="home">
+      <div class="absolute inset-0">
+        <img src="static/images/hero-hotel.jpg" alt="Himalayan Haven" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-primary/40"></div>
+      </div>
+      <div class="relative z-10 text-center text-white px-4 animate-fade-in">
+        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">Welcome to Himalayan Haven</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Experience luxury and comfort in the heart of the city</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#rooms" class="inline-block px-8 py-3 rounded-md bg-accent text-accent-foreground text-lg hover:opacity-90">Explore Rooms</a>
+          <a href="#contact" class="inline-block px-8 py-3 rounded-md border border-white/70 text-white text-lg bg-white/10 backdrop-blur-sm hover:bg-white/20">Contact Us</a>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-card">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center p-6 transition-transform hover:scale-105">
+            <i data-lucide="star" class="h-12 w-12 text-accent mx-auto mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">5-Star Service</h3>
+            <p class="text-muted-foreground text-sm">Excellence in hospitality</p>
+          </div>
+          <div class="text-center p-6 transition-transform hover:scale-105">
+            <i data-lucide="map-pin" class="h-12 w-12 text-accent mx-auto mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Prime Location</h3>
+            <p class="text-muted-foreground text-sm">City center access</p>
+          </div>
+          <div class="text-center p-6 transition-transform hover:scale-105">
+            <i data-lucide="clock" class="h-12 w-12 text-accent mx-auto mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">24/7 Support</h3>
+            <p class="text-muted-foreground text-sm">Always here for you</p>
+          </div>
+          <div class="text-center p-6 transition-transform hover:scale-105">
+            <i data-lucide="award" class="h-12 w-12 text-accent mx-auto mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Award Winning</h3>
+            <p class="text-muted-foreground text-sm">Recognized excellence</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Rooms Section (static example) -->
+    <section class="py-20 bg-background" id="rooms">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-serif font-bold mb-4">Featured Rooms</h2>
+          <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Discover our carefully curated selection of luxury accommodations</p>
+        </div>
+        <div class="mb-8 flex justify-center">
+          <select id="typeFilter" class="w-64 px-3 py-2 rounded-md border border-input bg-background">
+            <option value="all">All Rooms</option>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="suite">Suite</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="presidential">Presidential</option>
+          </select>
+        </div>
+        <div id="roomsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Example room cards; add more as needed -->
+          <div class="room-card" data-type="suite">
+            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
+              <div class="relative overflow-hidden h-64">
+                <img src="static/images/hero-hotel.jpg" alt="Deluxe Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Suite</span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif text-2xl font-semibold">Executive Suite</h3>
+                <p class="text-sm text-muted-foreground mt-1">Spacious suite with mountain view, king bed, and luxury amenities.</p>
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
+                  <i data-lucide="users" class="h-4 w-4"></i>
+                  <span>Up to 4 guests</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="tv" class="h-4 w-4"></i><span>TV</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Coffee Maker</span></div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-muted-foreground">From</p>
+                    <p class="text-2xl font-bold text-accent">$120<span class="text-sm text-muted-foreground">/night</span></p>
+                  </div>
+                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Single Room -->
+          <div class="room-card" data-type="single">
+            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
+              <div class="relative overflow-hidden h-64">
+                <img src="static/images/hero-hotel.jpg" alt="Single Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Single</span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif text-2xl font-semibold">Classic Single Room</h3>
+                <p class="text-sm text-muted-foreground mt-1">Cozy room perfect for solo travelers with essential comforts.</p>
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
+                  <i data-lucide="users" class="h-4 w-4"></i>
+                  <span>Up to 1 guest</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Tea/Coffee</span></div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-muted-foreground">From</p>
+                    <p class="text-2xl font-bold text-accent">$60<span class="text-sm text-muted-foreground">/night</span></p>
+                  </div>
+                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Double Room -->
+          <div class="room-card" data-type="double">
+            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
+              <div class="relative overflow-hidden h-64">
+                <img src="static/images/hero-hotel.jpg" alt="Double Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Double</span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif text-2xl font-semibold">Comfort Double Room</h3>
+                <p class="text-sm text-muted-foreground mt-1">Ideal for couples with a queen bed and modern amenities.</p>
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
+                  <i data-lucide="users" class="h-4 w-4"></i>
+                  <span>Up to 2 guests</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="tv" class="h-4 w-4"></i><span>Smart TV</span></div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-muted-foreground">From</p>
+                    <p class="text-2xl font-bold text-accent">$80<span class="text-sm text-muted-foreground">/night</span></p>
+                  </div>
+                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deluxe Room -->
+          <div class="room-card" data-type="deluxe">
+            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
+              <div class="relative overflow-hidden h-64">
+                <img src="static/images/hero-hotel.jpg" alt="Deluxe Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Deluxe</span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif text-2xl font-semibold">Deluxe Room</h3>
+                <p class="text-sm text-muted-foreground mt-1">Elegant room with premium bedding and a cozy seating area.</p>
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
+                  <i data-lucide="users" class="h-4 w-4"></i>
+                  <span>Up to 3 guests</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Breakfast</span></div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-muted-foreground">From</p>
+                    <p class="text-2xl font-bold text-accent">$100<span class="text-sm text-muted-foreground">/night</span></p>
+                  </div>
+                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Presidential Suite -->
+          <div class="room-card" data-type="presidential">
+            <div class="overflow-hidden rounded-lg border border-border transition-all duration-300 hover:shadow-elegant group bg-card">
+              <div class="relative overflow-hidden h-64">
+                <img src="static/images/hero-hotel.jpg" alt="Presidential Suite" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <span class="absolute top-4 right-4 px-2 py-1 rounded bg-accent text-accent-foreground text-xs font-medium">Presidential</span>
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif text-2xl font-semibold">Presidential Suite</h3>
+                <p class="text-sm text-muted-foreground mt-1">Ultimate luxury with spacious living area and exclusive services.</p>
+                <div class="flex items-center space-x-2 text-sm text-muted-foreground mt-4">
+                  <i data-lucide="users" class="h-4 w-4"></i>
+                  <span>Up to 6 guests</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="wifi" class="h-4 w-4"></i><span>WiFi</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="tv" class="h-4 w-4"></i><span>4K TV</span></div>
+                  <div class="flex items-center space-x-1 text-xs text-muted-foreground bg-muted px-2 py-1 rounded"><i data-lucide="coffee" class="h-4 w-4"></i><span>Barista</span></div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-muted-foreground">From</p>
+                    <p class="text-2xl font-bold text-accent">$250<span class="text-sm text-muted-foreground">/night</span></p>
+                  </div>
+                  <a href="#" class="px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section class="py-20 bg-gradient-hero" id="about">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-4xl font-serif font-bold mb-6">About Himalayan Haven</h2>
+          <p class="text-lg text-muted-foreground mb-8">For over 50 years, Himalayan Haven has been the epitome of luxury and elegance. Our commitment to exceptional service and attention to detail ensures every guest experiences the finest hospitality.</p>
+          <a href="#about" class="px-5 py-2 rounded-md border border-border hover:bg-muted">Learn More About Us</a>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="py-20 bg-background" id="contact">
+      <div class="container mx-auto px-4">
+        <div class="mb-12 text-center">
+          <h1 class="text-5xl font-serif font-bold mb-4">Contact Us</h1>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">We'd love to hear from you. Get in touch with us today.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div class="rounded-lg shadow-soft border border-border">
+            <div class="p-6 border-b border-border">
+              <h2 class="text-2xl font-serif">Send us a Message</h2>
+              <p class="text-sm text-muted-foreground">Fill out the form and we'll get back to you shortly</p>
+            </div>
+            <div class="p-6">
+              <form id="contactForm" class="space-y-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                  <input id="email" name="email" type="email" placeholder="your@email.com" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                </div>
+                <div>
+                  <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                  <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required class="w-full px-3 py-2 rounded-md border border-input bg-background"></textarea>
+                </div>
+                <button type="submit" class="w-full px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90" id="contactSubmit">Send Message</button>
+                <p id="contactToast" class="hidden text-sm"></p>
+              </form>
+            </div>
+          </div>
+          <div class="space-y-8">
+            <div class="rounded-lg shadow-soft border border-border">
+              <div class="p-6 border-b border-border">
+                <h2 class="text-2xl font-serif">Get in Touch</h2>
+                <p class="text-sm text-muted-foreground">Our team is available 24/7 to assist you</p>
+              </div>
+              <div class="p-6 space-y-6">
+                <div class="flex items-start space-x-4">
+                  <i data-lucide="phone" class="h-6 w-6 text-accent mt-1"></i>
+                  <div>
+                    <p class="font-medium">Phone</p>
+                    <p class="text-muted-foreground">+977-9812345678</p>
+                    <p class="text-sm text-muted-foreground">Available 24/7</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                  <i data-lucide="mail" class="h-6 w-6 text-accent mt-1"></i>
+                  <div>
+                    <p class="font-medium">Email</p>
+                    <p class="text-muted-foreground">info@himalayanhaven.com</p>
+                    <p class="text-sm text-muted-foreground">We reply within 24 hours</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                  <i data-lucide="map-pin" class="h-6 w-6 text-accent mt-1"></i>
+                  <div>
+                    <p class="font-medium">Address</p>
+                    <p class="text-muted-foreground">Mustang-4, Nepal</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-lg shadow-soft border border-border">
+              <div class="p-6 border-b border-border">
+                <h3 class="text-xl font-serif">Operating Hours</h3>
+              </div>
+              <div class="p-6 space-y-2">
+                <div class="flex justify-between"><span class="text-muted-foreground">Check-in</span><span class="font-medium">3:00 PM</span></div>
+                <div class="flex justify-between"><span class="text-muted-foreground">Check-out</span><span class="font-medium">11:00 AM</span></div>
+                <div class="flex justify-between"><span class="text-muted-foreground">Front Desk</span><span class="font-medium">24/7</span></div>
+                <div class="flex justify-between"><span class="text-muted-foreground">Concierge</span><span class="font-medium">24/7</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground mt-16">
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i data-lucide="hotel" class="h-8 w-8 text-accent"></i>
+              <span class="text-xl font-serif font-bold">Himalayan Haven</span>
+            </div>
+            <p class="text-sm text-primary-foreground/80">Experience luxury and comfort in the heart of the city.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" class="hover:text-accent transition-colors">Home</a></li>
+              <li><a href="#rooms" class="hover:text-accent transition-colors">Rooms</a></li>
+              <li><a href="#about" class="hover:text-accent transition-colors">About</a></li>
+              <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">Contact</h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center space-x-2"><i data-lucide="phone" class="h-4 w-4 text-accent"></i><span>+977-9812345678</span></li>
+              <li class="flex items-center space-x-2"><i data-lucide="mail" class="h-4 w-4 text-accent"></i><span>info@himalayanhaven.com</span></li>
+              <li class="flex items-center space-x-2"><i data-lucide="map-pin" class="h-4 w-4 text-accent"></i><span>Mustang-4, Nepal</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4">Policies</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-accent transition-colors">Terms of Service</a></li>
+              <li><a href="#" class="hover:text-accent transition-colors">Cancellation Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-sm">
+          <p>&copy; 2025 Himalayan Haven. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Lucide icons
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        if (btn && menu) {
+          btn.addEventListener('click', function () {
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            if (menuIcon && closeIcon) {
+              menuIcon.classList.toggle('hidden', !isHidden);
+              closeIcon.classList.toggle('hidden', isHidden);
+            }
+          });
+        }
+        // Rooms filter
+        const select = document.getElementById('typeFilter');
+        const cards = Array.from(document.querySelectorAll('#roomsGrid .room-card'));
+        function applyFilter() {
+          const val = select.value;
+          cards.forEach(card => {
+            const type = (card.getAttribute('data-type') || '').toLowerCase();
+            card.style.display = (val === 'all' || type === val) ? '' : 'none';
+          });
+        }
+        if (select) {
+          select.addEventListener('change', applyFilter);
+          applyFilter();
+        }
+        // Contact form validation
+        const form = document.getElementById('contactForm');
+        const toast = document.getElementById('contactToast');
+        const submitBtn = document.getElementById('contactSubmit');
+        if (form) {
+          form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const message = form.message.value.trim();
+            if (!name) return showToast('Name is required', true);
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showToast('Invalid email address', true);
+            if (message.length < 10) return showToast('Message must be at least 10 characters', true);
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            await new Promise(r => setTimeout(r, 800));
+            showToast("Thank you for contacting us. We'll get back to you soon!", false);
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+          });
+          function showToast(text, isError) {
+            toast.textContent = text;
+            toast.classList.remove('hidden');
+            toast.classList.toggle('text-red-600', !!isError);
+            toast.classList.toggle('text-green-600', !isError);
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

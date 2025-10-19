@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Himalayan Haven</title>
-    <meta name="description" content="Experience luxury and comfort at Himalayan Haven." />
-    <meta name="theme-color" content="#0f172a" />
+    <title>Contact • Himalayan Haven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,14 +32,8 @@
               'gradient-hero': 'linear-gradient(135deg, hsl(38,92%,50%,0.1), hsl(38,92%,60%,0.05))',
               'gradient-card': 'linear-gradient(180deg, hsl(0,0%,100%), hsl(40,30%,98%))',
             },
-            boxShadow: {
-              'elegant': '0 10px 40px -10px hsl(38,92%,50%,0.15)',
-              'soft': '0 4px 20px -2px hsl(20,14%,10%,0.08)',
-            },
-            fontFamily: {
-              'serif': ['Playfair Display', 'serif'],
-              'sans': ['Inter', 'system-ui', 'sans-serif'],
-            },
+            boxShadow: { 'elegant': '0 10px 40px -10px hsl(38,92%,50%,0.15)', 'soft': '0 4px 20px -2px hsl(20,14%,10%,0.08)' },
+            fontFamily: { 'serif': ['Playfair Display', 'serif'], 'sans': ['Inter', 'system-ui', 'sans-serif'] },
             borderRadius: { lg: '0.75rem', md: '0.625rem', sm: '0.5rem' },
             animation: { 'fade-in': 'fade-in 0.4s ease-out' },
             keyframes: { 'fade-in': { from: { opacity: 0 }, to: { opacity: 1 } } },
@@ -53,7 +45,7 @@
     <link rel="stylesheet" href="static/css/site.css" />
   </head>
   <body class="bg-background text-foreground">
-    <!-- Navbar (shared) -->
+    <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
@@ -83,49 +75,86 @@
       </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="relative h-[100svh] flex items-center justify-center overflow-hidden mt-0" id="home">
-      <div class="absolute inset-0">
-        <img src="static/images/hero-hotel.jpg" alt="Himalayan Haven" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-primary/40"></div>
-      </div>
-      <div class="relative z-10 text-center text-white px-4">
-        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">Welcome to Himalayan Haven</h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Experience luxury and comfort in the heart of the city</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="rooms.html" class="inline-block px-8 py-3 rounded-md bg-accent text-accent-foreground text-lg hover:opacity-90">Explore Rooms</a>
-          <a href="contact.html" class="inline-block px-8 py-3 rounded-md border border-white/70 text-white text-lg bg-white/10 backdrop-blur-sm hover:bg-white/20">Contact Us</a>
+    <main class="flex-grow pt-24 pb-12">
+      <section class="py-20 bg-background" id="contact">
+        <div class="container mx-auto px-4">
+          <div class="mb-12 text-center">
+            <h1 class="text-5xl font-serif font-bold mb-4">Contact Us</h1>
+            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">We'd love to hear from you. Get in touch with us today.</p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div class="rounded-lg shadow-soft border border-border">
+              <div class="p-6 border-b border-border">
+                <h2 class="text-2xl font-serif">Send us a Message</h2>
+                <p class="text-sm text-muted-foreground">Fill out the form and we'll get back to you shortly</p>
+              </div>
+              <div class="p-6">
+                <form id="contactForm" class="space-y-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                    <input id="email" name="email" type="email" placeholder="your@email.com" required class="w-full px-3 py-2 rounded-md border border-input bg-background" />
+                  </div>
+                  <div>
+                    <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required class="w-full px-3 py-2 rounded-md border border-input bg-background"></textarea>
+                  </div>
+                  <button type="submit" class="w-full px-4 py-2 rounded-md bg-accent text-accent-foreground hover:opacity-90" id="contactSubmit">Send Message</button>
+                  <p id="contactToast" class="hidden text-sm"></p>
+                </form>
+              </div>
+            </div>
+            <div class="space-y-8">
+              <div class="rounded-lg shadow-soft border border-border">
+                <div class="p-6 border-b border-border">
+                  <h2 class="text-2xl font-serif">Get in Touch</h2>
+                  <p class="text-sm text-muted-foreground">Our team is available 24/7 to assist you</p>
+                </div>
+                <div class="p-6 space-y-6">
+                  <div class="flex items-start space-x-4">
+                    <i data-lucide="phone" class="h-6 w-6 text-accent mt-1"></i>
+                    <div>
+                      <p class="font-medium">Phone</p>
+                      <p class="text-muted-foreground">+977-9812345678</p>
+                      <p class="text-sm text-muted-foreground">Available 24/7</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-4">
+                    <i data-lucide="mail" class="h-6 w-6 text-accent mt-1"></i>
+                    <div>
+                      <p class="font-medium">Email</p>
+                      <p class="text-muted-foreground">info@himalayanhaven.com</p>
+                      <p class="text-sm text-muted-foreground">We reply within 24 hours</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-4">
+                    <i data-lucide="map-pin" class="h-6 w-6 text-accent mt-1"></i>
+                    <div>
+                      <p class="font-medium">Address</p>
+                      <p class="text-muted-foreground">Mustang-4, Nepal</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-lg shadow-soft border border-border">
+                <div class="p-6 border-b border-border">
+                  <h3 class="text-xl font-serif">Operating Hours</h3>
+                </div>
+                <div class="p-6 space-y-2">
+                  <div class="flex justify-between"><span class="text-muted-foreground">Check-in</span><span class="font-medium">3:00 PM</span></div>
+                  <div class="flex justify-between"><span class="text-muted-foreground">Check-out</span><span class="font-medium">11:00 AM</span></div>
+                  <div class="flex justify-between"><span class="text-muted-foreground">Front Desk</span><span class="font-medium">24/7</span></div>
+                  <div class="flex justify-between"><span class="text-muted-foreground">Concierge</span><span class="font-medium">24/7</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section class="py-20 bg-gradient-card">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="text-center p-6 transition-transform hover:scale-105">
-            <i data-lucide="star" class="h-12 w-12 text-accent mx-auto mb-4"></i>
-            <h3 class="font-semibold text-lg mb-2">5-Star Service</h3>
-            <p class="text-muted-foreground text-sm">Excellence in hospitality</p>
-          </div>
-          <div class="text-center p-6 transition-transform hover:scale-105">
-            <i data-lucide="map-pin" class="h-12 w-12 text-accent mx-auto mb-4"></i>
-            <h3 class="font-semibold text-lg mb-2">Prime Location</h3>
-            <p class="text-muted-foreground text-sm">City center access</p>
-          </div>
-          <div class="text-center p-6 transition-transform hover:scale-105">
-            <i data-lucide="clock" class="h-12 w-12 text-accent mx-auto mb-4"></i>
-            <h3 class="font-semibold text-lg mb-2">24/7 Support</h3>
-            <p class="text-muted-foreground text-sm">Always here for you</p>
-          </div>
-          <div class="text-center p-6 transition-transform hover:scale-105">
-            <i data-lucide="award" class="h-12 w-12 text-accent mx-auto mb-4"></i>
-            <h3 class="font-semibold text-lg mb-2">Award Winning</h3>
-            <p class="text-muted-foreground text-sm">Recognized excellence</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-primary text-primary-foreground mt-16">
