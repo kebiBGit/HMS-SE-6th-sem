@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,3 +92,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SUPABASE_PROJECT_ID = config('VITE_SUPABASE_PROJECT_ID', default='')
 SUPABASE_URL = config('VITE_SUPABASE_URL', default='')
 SUPABASE_PUBLISHABLE_KEY = config('VITE_SUPABASE_PUBLISHABLE_KEY', default='')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
