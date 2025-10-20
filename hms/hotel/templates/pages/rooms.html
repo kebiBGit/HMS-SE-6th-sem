@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Rooms - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="rooms-main">
+  <div class="rooms-container">
+    <div class="rooms-header">
+      <h1 class="rooms-title">Our Rooms &amp; Suites</h1>
+      <p class="rooms-subtitle">Choose from our collection of elegantly designed rooms and suites</p>
+    </div>
+
+    <div class="rooms-filter-wrapper">
+      <select id="typeFilter" class="rooms-filter">
+        <option value="all">All Rooms</option>
+        <option value="single">Single</option>
+        <option value="double">Double</option>
+        <option value="suite">Suite</option>
+        <option value="deluxe">Deluxe</option>
+        <option value="presidential">Presidential</option>
+      </select>
+    </div>
+
+    <div id="roomsGrid" class="rooms-grid">
+
+      <!-- Suite -->
+      <div class="room-card">
+        <div class="room-card-inner" data-type="suite">
+          <div class="room-image-wrapper">
+            <img src="{% static 'images/rooms/single.jpg' %}" alt="Executive Suite" class="room-image" />
+            <span class="room-type-badge">Most Popular</span>
+          </div>
+          <div class="room-details">
+            <h3 class="room-name">Executive Suite</h3>
+            <p class="room-description">Spacious suite with mountain view, king bed, and luxury amenities.</p>
+            <div class="room-guests">
+              <i data-lucide="users" class="room-guests-icon"></i>
+              <span>Up to 4 guests</span>
+            </div>
+            <div class="room-amenities">
+              <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+              <div class="room-amenity"><i data-lucide="tv" class="room-amenity-icon"></i><span>TV</span></div>
+              <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Coffee Maker</span></div>
+            </div>
+            <div class="room-footer">
+              <div>
+                <p class="room-price-label">From</p>
+                <p class="room-price">Rs.3200<span class="room-price-unit">/night</span></p>
+              </div>
+              <a href="/booking/" class="room-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single -->
+      <div class="room-card">
+        <div class="room-card-inner" data-type="single">
+          <div class="room-image-wrapper">
+            <img src="{% static 'images/rooms/single.jpg' %}" alt="Single Room" class="room-image" />
+            <span class="room-type-badge">Single</span>
+          </div>
+          <div class="room-details">
+            <h3 class="room-name">Classic Single Room</h3>
+            <p class="room-description">Cozy room perfect for solo travelers with essential comforts.</p>
+            <div class="room-guests">
+              <i data-lucide="users" class="room-guests-icon"></i>
+              <span>Up to 1 guest</span>
+            </div>
+            <div class="room-amenities">
+              <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+              <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Tea/Coffee</span></div>
+            </div>
+            <div class="room-footer">
+              <div>
+                <p class="room-price-label">From</p>
+                <p class="room-price">Rs.1000<span class="room-price-unit">/night</span></p>
+              </div>
+              <a href="/booking/" class="room-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Double -->
+      <div class="room-card">
+        <div class="room-card-inner" data-type="double">
+          <div class="room-image-wrapper">
+            <img src="{% static 'images/rooms/single.jpg' %}" alt="Double Room" class="room-image" />
+            <span class="room-type-badge">Double</span>
+          </div>
+          <div class="room-details">
+            <h3 class="room-name">Comfort Double Room</h3>
+            <p class="room-description">Ideal for couples with a queen bed and modern amenities.</p>
+            <div class="room-guests">
+              <i data-lucide="users" class="room-guests-icon"></i>
+              <span>Up to 2 guests</span>
+            </div>
+            <div class="room-amenities">
+              <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+              <div class="room-amenity"><i data-lucide="tv" class="room-amenity-icon"></i><span>Smart TV</span></div>
+            </div>
+            <div class="room-footer">
+              <div>
+                <p class="room-price-label">From</p>
+                <p class="room-price">Rs.1800<span class="room-price-unit">/night</span></p>
+              </div>
+              <a href="/booking/" class="room-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deluxe -->
+      <div class="room-card">
+        <div class="room-card-inner" data-type="deluxe">
+          <div class="room-image-wrapper">
+            <img src="{% static 'images/rooms/single.jpg' %}" alt="Deluxe Room" class="room-image" />
+            <span class="room-type-badge">Deluxe</span>
+          </div>
+          <div class="room-details">
+            <h3 class="room-name">Deluxe Room</h3>
+            <p class="room-description">Elegant room with premium bedding and a cozy seating area.</p>
+            <div class="room-guests">
+              <i data-lucide="users" class="room-guests-icon"></i>
+              <span>Up to 3 guests</span>
+            </div>
+            <div class="room-amenities">
+              <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+              <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Breakfast</span></div>
+            </div>
+            <div class="room-footer">
+              <div>
+                <p class="room-price-label">From</p>
+                <p class="room-price">Rs.2400<span class="room-price-unit">/night</span></p>
+              </div>
+              <a href="/booking/" class="room-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Presidential -->
+      <div class="room-card">
+        <div class="room-card-inner" data-type="presidential">
+          <div class="room-image-wrapper">
+            <img src="{% static 'images/rooms/single.jpg' %}" alt="Presidential Suite" class="room-image" />
+            <span class="room-type-badge">Presidential</span>
+          </div>
+          <div class="room-details">
+            <h3 class="room-name">Presidential Suite</h3>
+            <p class="room-description">Ultimate luxury with spacious living area and exclusive services.</p>
+            <div class="room-guests">
+              <i data-lucide="users" class="room-guests-icon"></i>
+              <span>Up to 6 guests</span>
+            </div>
+            <div class="room-amenities">
+              <div class="room-amenity"><i data-lucide="wifi" class="room-amenity-icon"></i><span>WiFi</span></div>
+              <div class="room-amenity"><i data-lucide="tv" class="room-amenity-icon"></i><span>4K TV</span></div>
+              <div class="room-amenity"><i data-lucide="coffee" class="room-amenity-icon"></i><span>Barista</span></div>
+            </div>
+            <div class="room-footer">
+              <div>
+                <p class="room-price-label">From</p>
+                <p class="room-price">Rs.4000<span class="room-price-unit">/night</span></p>
+              </div>
+              <a href="/booking/" class="room-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const select = document.getElementById('typeFilter');
+  const cards = document.querySelectorAll('#roomsGrid .room-card');
+  if (select && cards.length) {
+    function applyFilter() {
+      const val = select.value;
+      cards.forEach(card => {
+        const type = card.querySelector('.room-card-inner').getAttribute('data-type').toLowerCase();
+        card.style.display = (val === 'all' || type === val) ? '' : 'none';
+      });
+    }
+    select.addEventListener('change', applyFilter);
+    applyFilter();
+  }
+</script>
+{% endblock %}
+
+

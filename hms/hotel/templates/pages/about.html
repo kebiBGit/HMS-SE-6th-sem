@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+ 
+    <main class="about-main">
+      <div class="about-container">
+        <!-- Hero Section -->
+        <div class="about-hero">
+          <h1 class="about-hero-title">About Himalayan Haven</h1>
+          <p class="about-hero-subtitle">
+            A legacy of excellence in hospitality since 1970
+          </p>
+        </div>
+
+        <!-- Story Section -->
+        <section class="about-story-section">
+          <div class="about-story-content">
+            <h2 class="about-section-title">Our Story</h2>
+            <div class="about-story-text">
+              <p>
+                For over five decades, Himalayan Haven has stood as a beacon of luxury and elegance
+                in the heart of the city. What began as a vision to create an unparalleled
+                hospitality experience has evolved into a landmark destination known for its
+                impeccable service and timeless charm.
+              </p>
+              <p>
+                Our commitment to excellence extends beyond our beautifully appointed rooms
+                and world-class amenities. We believe in creating memories that last a lifetime,
+                ensuring every guest feels valued and cared for from the moment they arrive.
+              </p>
+              <p>
+                Today, Himalayan Haven continues to set the standard for luxury accommodation,
+                blending traditional elegance with modern comforts to provide an experience
+                that is both refined and welcoming.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="about-values-section">
+          <h2 class="about-section-title-center">Our Values</h2>
+          <div class="about-values-grid">
+            <div class="about-value-card">
+              <i data-lucide="award" class="about-value-icon"></i>
+              <h3 class="about-value-title">Excellence</h3>
+              <p class="about-value-description">We strive for perfection in every detail, from service to amenities.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="users" class="about-value-icon"></i>
+              <h3 class="about-value-title">Community</h3>
+              <p class="about-value-description">Building lasting relationships with our guests and local community.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="globe" class="about-value-icon"></i>
+              <h3 class="about-value-title">Sustainability</h3>
+              <p class="about-value-description">Committed to environmental responsibility and sustainable practices.</p>
+            </div>
+            <div class="about-value-card">
+              <i data-lucide="heart" class="about-value-icon"></i>
+              <h3 class="about-value-title">Care</h3>
+              <p class="about-value-description">Treating every guest with warmth, respect, and genuine hospitality.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="about-team-section">
+          <h2 class="about-section-title-center">Our Team</h2>
+          <div class="about-team-content">
+            <p class="about-team-text">
+              Behind every exceptional experience is our dedicated team of hospitality professionals.
+              With years of combined experience, our staff is committed to making your stay
+              memorable and comfortable.
+            </p>
+            <p class="about-team-text">
+              From our concierge service to housekeeping, every member of the Himalayan Haven family
+              takes pride in delivering personalized service that exceeds expectations.
+            </p>
+          </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="about-location-section">
+          <h2 class="about-section-title-center">Location</h2>
+          <p class="about-location-intro">
+            Located in the serene Mustang region, Himalayan Haven offers easy access to natural
+            beauty, cultural landmarks, and breathtaking mountain vistas.
+          </p>
+          <div class="about-location-card">
+            <p class="about-location-address">Mustang-4, Nepal</p>
+            <p class="about-location-info">Phone: +977-9812345678</p>
+            <p class="about-location-info">Email: info@himalayanhaven.com</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    {% endblock %}

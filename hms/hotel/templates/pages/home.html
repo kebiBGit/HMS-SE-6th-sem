@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section" id="home">
+  <div class="hero-bg">
+    <img src="{% static 'images/hero-hotel.jpg' %}" alt="Himalayan Haven" class="hero-img" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to Himalayan Haven</h1>
+    <p class="hero-subtitle">Experience luxury and comfort in the heart of the city</p>
+    <div class="hero-buttons">
+      <a href="{% url 'rooms' %}" class="hero-btn-primary">Explore Rooms</a>
+      <a href="{% url 'contact' %}" class="hero-btn-secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-section">
+  <div class="features-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <i data-lucide="star" class="feature-icon"></i>
+        <h3 class="feature-title">5-Star Service</h3>
+        <p class="feature-description">Excellence in hospitality</p>
+      </div>
+      <div class="feature-card">
+        <i data-lucide="map-pin" class="feature-icon"></i>
+        <h3 class="feature-title">Prime Location</h3>
+        <p class="feature-description">City center access</p>
+      </div>
+      <div class="feature-card">
+        <i data-lucide="clock" class="feature-icon"></i>
+        <h3 class="feature-title">24/7 Support</h3>
+        <p class="feature-description">Always here for you</p>
+      </div>
+      <div class="feature-card">
+        <i data-lucide="award" class="feature-icon"></i>
+        <h3 class="feature-title">Award Winning</h3>
+        <p class="feature-description">Recognized excellence</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

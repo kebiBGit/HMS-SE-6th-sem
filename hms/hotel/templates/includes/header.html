@@ -1,0 +1,36 @@
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <div class="w-full px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center space-x-2 group">
+        <i data-lucide="hotel" class="h-8 w-8 text-yellow-500 transition-transform group-hover:scale-110"></i>
+        <span class="text-xl font-serif font-bold text-black">Himalayan Haven</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="{% url 'home' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'home' %}text-yellow-500{% endif %}">Home</a>
+        <a href="{% url 'rooms' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'rooms' %}text-yellow-500{% endif %}">Rooms</a>
+        <a href="{% url 'about' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'about' %}text-yellow-500{% endif %}">About</a>
+        <a href="{% url 'contact' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'contact' %}text-yellow-500{% endif %}">Contact</a>
+        <a href="#auth" class="px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden p-2 text-black hover:text-yellow-500 transition-colors" aria-label="Menu">
+        <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
+        <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden pb-4 space-y-2 hidden animate-fade-in">
+      <a href="{% url 'home' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">Home</a>
+      <a href="{% url 'rooms' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">Rooms</a>
+      <a href="{% url 'about' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">About</a>
+      <a href="{% url 'contact' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">Contact</a>
+      <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+    </div>
+  </div>
+</nav>

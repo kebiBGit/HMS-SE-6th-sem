@@ -1,0 +1,33 @@
+{% load static %}
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="{% static 'js/site.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+   // Lucide icons init
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+  
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  if (btn && menu) {
+    btn.addEventListener('click', function () {
+      const isHidden = menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden', !isHidden);
+      closeIcon.classList.toggle('hidden', isHidden);
+    });
+  }
+
+  // Highlight active navbar link
+  var path = location.pathname.split('/').pop();
+  document.querySelectorAll('.navbar-link').forEach(function(link) {
+    if (link.getAttribute('href') === path) link.classList.add('active');
+  });
+});
+</script>

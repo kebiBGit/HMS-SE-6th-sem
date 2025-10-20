@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Himalayan Haven{% endblock %}</title>
+  <meta name="description" content="Experience luxury and comfort at Himalayan Haven.">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+
+  <!-- Page-specific CSS -->
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}default-body{% endblock %}">
+
+  <!-- Header -->
+  {% include 'includes/header.html' %}
+
+  <!-- Main content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'includes/footer.html' %}
+
+  <!-- Global JS -->
+  {% include 'includes/scripts.html' %}
+  <script src="{% static 'js/site.js' %}"></script>
+
+  <!-- Extra scripts -->
+  {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

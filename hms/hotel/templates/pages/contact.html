@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="contact-main">
+      <section class="contact-section" id="contact">
+        <div class="contact-container">
+          <div class="contact-header">
+            <h1 class="contact-title">Contact Us</h1>
+            <p class="contact-subtitle">We'd love to hear from you. Get in touch with us today.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-card-header">
+                <h2 class="contact-card-title">Send us a Message</h2>
+                <p class="contact-card-description">Fill out the form and we'll get back to you shortly</p>
+              </div>
+              <div class="contact-card-body">
+                <form id="contactForm" class="contact-form">
+                  <div>
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required class="form-input" />
+                  </div>
+                  <div>
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" type="email" placeholder="your@email.com" required class="form-input" />
+                  </div>
+                  <div>
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="How can we help you?" required class="form-textarea"></textarea>
+                  </div>
+                  <button type="submit" class="form-button" id="contactSubmit">Send Message</button>
+                  <p id="contactToast" class="form-message"></p>
+                </form>
+              </div>
+            </div>
+            <div class="info-section">
+              <div class="contact-card">
+                <div class="contact-card-header">
+                  <h2 class="contact-card-title">Get in Touch</h2>
+                  <p class="contact-card-description">Our team is available 24/7 to assist you</p>
+                </div>
+                <div class="contact-card-body">
+                  <div class="info-list">
+                    <div class="info-item">
+                      <i data-lucide="phone" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Phone</p>
+                        <p class="info-value">+977-9812345678</p>
+                        <p class="info-note">Available 24/7</p>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <i data-lucide="mail" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Email</p>
+                        <p class="info-value">info@himalayanhaven.com</p>
+                        <p class="info-note">We reply within 24 hours</p>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <i data-lucide="map-pin" class="info-icon"></i>
+                      <div>
+                        <p class="info-label">Address</p>
+                        <p class="info-value">Mustang-4, Nepal</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-card-header">
+                  <h3 class="contact-card-title">Operating Hours</h3>
+                </div>
+                <div class="contact-card-body">
+                  <div class="hours-grid">
+                    <div class="hours-row"><span class="hours-label">Check-in</span><span class="hours-value">3:00 PM</span></div>
+                    <div class="hours-row"><span class="hours-label">Check-out</span><span class="hours-value">11:00 AM</span></div>
+                    <div class="hours-row"><span class="hours-label">Front Desk</span><span class="hours-value">24/7</span></div>
+                    <div class="hours-row"><span class="hours-label">Concierge</span><span class="hours-value">24/7</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+const form = document.getElementById('contactForm');
+  const toast = document.getElementById('contactToast');
+  const submitBtn = document.getElementById('contactSubmit');
+  if (form && toast && submitBtn) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name) return showToast('Name is required', true);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showToast('Invalid email address', true);
+      if (message.length < 10) return showToast('Message must be at least 10 characters', true);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      await new Promise(r => setTimeout(r, 800));
+      showToast("Thank you for contacting us. We'll get back to you soon!", false);
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    });
+    function showToast(text, isError) {
+      toast.textContent = text;
+      toast.classList.remove('hidden');
+      toast.classList.toggle('text-red-600', !!isError);
+      toast.classList.toggle('text-green-600', !isError);
+      setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+  }
+</script>
+{% endblock %}
