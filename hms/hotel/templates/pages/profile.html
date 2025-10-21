@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="{% static 'css/.css' %}">
+</head>
+<body>
+  <a href="{% url 'home' %}" style="position:fixed; top:10px; left:10px;">🏠 Home</a>
+  <h2>Welcome, {{ request.user.first_name }}</h2>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+
+  <h3>Your Bookings</h3>
+  {% if bookings %}
+    <table border="1" cellpadding="8">
+      <tr>
+        <th>Booking ID</th>
+        <th>Room No.</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Status</th>
+      </tr>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ booking.id }}</td>
+        <td>
+          {% for item in booking.items.all %}
+            {{ item.room.room_number }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </td>
+        <td>{{ booking.check_in }}</td>
+        <td>{{ booking.check_out }}</td>
+        <td>{{ booking.status }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No bookings yet.</p>
+  {% endif %}
+
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+</body>
+</html>

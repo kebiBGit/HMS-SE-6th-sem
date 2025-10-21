@@ -1,101 +1,32 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In • Himalayan Haven</title>
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/site.css" />
-    <link rel="stylesheet" href="static/css/auth.css" />
-    <style>
-      /* Force truly blank white background and center card */
-      body.auth-body { background: #fff !important; }
-    </style>
-  </head>
-  <body class="auth-body">
-    <a href="index.html" class="back-home-btn">Back to Home</a>
-    <main class="auth-main">
-      <div class="auth-card">
-    <style>
-      .back-home-btn {
-        position: absolute;
-        top: 1.5rem;
-        left: 1.5rem;
-        z-index: 10;
-        display: inline-block;
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.375rem;
-        background: hsl(38, 92%, 50%);
-        color: #fff;
-        font-size: 0.95rem;
-        font-weight: 500;
-        text-decoration: none;
-        box-shadow: 0 2px 8px hsla(38,92%,50%,0.08);
-        transition: opacity 0.15s, box-shadow 0.15s;
-      }
-      .back-home-btn:hover {
-        opacity: 0.9;
-        box-shadow: 0 4px 16px hsla(38,92%,50%,0.15);
-      }
-      @media (max-width: 600px) {
-        .back-home-btn {
-          top: 0.75rem;
-          left: 0.75rem;
-          font-size: 0.85rem;
-          padding: 0.3rem 0.6rem;
-        }
-      }
-    </style>
-        <h1 class="auth-card-title">Sign In</h1>
-        <form id="authForm" class="auth-form">
-          <div class="auth-form-group">
-            <label for="email" class="auth-form-label">Email</label>
-            <input id="email" type="email" required class="auth-form-input" placeholder="you@example.com" />
-          </div>
-          <div class="auth-form-group">
-            <label for="password" class="auth-form-label">Password</label>
-            <div class="auth-input-wrapper">
-              <input id="password" type="password" required class="auth-form-input" placeholder="•••••••" />
-              <button type="button" class="password-toggle" aria-label="Show password" data-target="password"><img src="static/images/eye-solid-full.svg" alt="Show password"></button>
-            </div>
-          </div>
-          <button type="submit" class="auth-form-button">Sign In</button>
-        </form>
-        <p class="auth-alt-text">Don't have an account? <a href="signup.html" class="auth-alt-link">Sign Up</a></p>
-        <p id="authToast" class="auth-toast">Signed in (demo)</p>
-      </div>
-    </main>
-    <script>
-      document.getElementById('authForm')?.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const t = document.getElementById('authToast');
-        if (t) {
-          t.style.display = 'block';
-          t.textContent = 'Signed in (demo)';
-          setTimeout(() => (t.style.display = 'none'), 2500);
-        }
-      });
-      // Toggle password visibility
-      document.querySelectorAll('.password-toggle').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var targetId = btn.getAttribute('data-target');
-          var input = targetId ? document.getElementById(targetId) : null;
-          if (!input) return;
-          var img = btn.querySelector('img');
-          if (input.getAttribute('type') === 'password') {
-            input.setAttribute('type', 'text');
-            btn.setAttribute('aria-label', 'Hide password');
-            if (img) img.src = 'static/images/eye-slash-solid-full.svg';
-          } else {
-            input.setAttribute('type', 'password');
-            btn.setAttribute('aria-label', 'Show password');
-            if (img) img.src = 'static/images/eye-solid-full.svg';
-          }
-        });
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="{% static 'css/.css' %}">
+</head>
+<body>
+  <a href="{% url 'home' %}" style="position:fixed; top:10px; left:10px;">🏠 Home</a>
+  <h2>Sign In</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST" action="{% url 'signin' %}">
+    {% csrf_token %}
+    <label>Email:</label>
+    <input type="email" name="email" required><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br>
+
+    <button type="submit">Sign In</button>
+  </form>
+
+  <p>Don’t have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+</body>
 </html>
