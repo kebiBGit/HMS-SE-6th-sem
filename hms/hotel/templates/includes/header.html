@@ -14,7 +14,13 @@
         <a href="{% url 'rooms' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'rooms' %}text-yellow-500{% endif %}">Rooms</a>
         <a href="{% url 'about' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'about' %}text-yellow-500{% endif %}">About</a>
         <a href="{% url 'contact' %}" class="nav-link text-black font-medium hover:text-yellow-500 {% if request.resolver_match.url_name == 'contact' %}text-yellow-500{% endif %}">Contact</a>
-        <a href="#auth" class="px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'profile' %}"  class="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-transform hover:scale-105">
+          <i data-lucide="user" class="h-5 w-5 text-black"></i>
+          </a>
+        {% else %}
+          <a href="{% url 'signin' %}" class="block w-full text-center px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+        {% endif %}
       </div>
 
       <!-- Mobile Menu Button -->
@@ -30,7 +36,13 @@
       <a href="{% url 'rooms' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">Rooms</a>
       <a href="{% url 'about' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">About</a>
       <a href="{% url 'contact' %}" class="block py-2 text-black hover:text-yellow-500 font-medium">Contact</a>
-      <a href="#auth" class="block w-full text-center px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-yellow-500 hover:bg-yellow-400 transition-transform hover:scale-105">
+        <i data-lucide="user" class="h-5 w-5 text-black"></i>
+        </a>
+        <a href="{% url 'signin' %}" class="block w-full text-center px-3 py-1.5 rounded-md bg-yellow-500 text-black text-sm hover:opacity-90">Sign In</a>
+      {% endif %}
+
     </div>
   </div>
 </nav>

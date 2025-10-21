@@ -1,6 +1,7 @@
 """
 Django settings for hms project.
 """
+import os
 
 from pathlib import Path
 from decouple import config
@@ -54,13 +55,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hms.wsgi.application'
 
-# Database (default SQLite for dev)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Detect if we are on Render
+if 'RENDER_DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ['RENDER_DATABASE_URL'], engine='mysql.connector.django')
     }
-}
+else:
+    # Local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mysql.connector.django',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST', default='127.0.0.1'),
+            'PORT': config('DB_PORT', default='3306'),
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -69,6 +81,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+AUTH_USER_MODEL = 'hotel.User'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

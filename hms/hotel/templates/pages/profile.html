@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile • Himalayan Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <link rel="icon" href="{% static 'images/hotel-solid-full.svg' %}" type="image/svg+xml" />
+</head>
+<body class="profile-body">
+  <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+  <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+
+  <main class="profile-main">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="avatar" aria-hidden="true">
+          {{ request.user.first_name|default:request.user.username|first|upper }}
+        </div>
+        <div class="profile-headings">
+          <h1 class="profile-title">{{ request.user.first_name|default:request.user.username }}</h1>
+          <p class="profile-subtitle">{{ request.user.email }}</p>
+        </div>
+      </div>
+
+      <section class="profile-section">
+        <h2 class="section-title">Your Bookings</h2>
+        {% if bookings %}
+          <div class="table-wrapper">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Room No.</th>
+                  <th>Check-in</th>
+                  <th>Check-out</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for booking in bookings %}
+                <tr>
+                  <td>{{ booking.id }}</td>
+                  <td>
+                    {% for item in booking.items.all %}
+                      {{ item.room.room_number }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                  </td>
+                  <td>{{ booking.check_in }}</td>
+                  <td>{{ booking.check_out }}</td>
+                  <td>
+                    <span class="status-badge status-{{ booking.status|slugify }}">{{ booking.status }}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <p class="muted">No bookings yet.</p>
+        {% endif %}
+      </section>
+    </div>
+  </main>
+</body>
+</html>
