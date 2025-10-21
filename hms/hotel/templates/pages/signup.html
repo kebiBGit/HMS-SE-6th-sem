@@ -3,37 +3,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="{% static 'css/.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up • Himalayan Haven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 <body>
-  <a href="{% url 'home' %}" style="position:fixed; top:10px; left:10px;">🏠 Home</a>
+  <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
   
-  <h2>Create an Account</h2>
+  <div style="width: 100%; max-width: 32rem;">
+    <h2>Create Account</h2>
 
-  {% if messages %}
-    {% for message in messages %}
-      <p style="color:red;">{{ message }}</p>
-    {% endfor %}
-  {% endif %}
+    {% if messages %}
+      {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
 
-  <form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
-    <label>Full Name:</label>
-    <input type="text" name="fullname" required><br>
+    <form method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <label>Full Name</label>
+      <input type="text" name="fullname" required placeholder="John Doe"><br>
 
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
+      <label>Email</label>
+      <input type="email" name="email" required placeholder="you@example.com"><br>
 
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
+      <label>Password</label>
+      <input type="password" name="password" required placeholder="••••••••"><br>
 
-    <label>Confirm Password:</label>
-    <input type="password" name="confirm_password" required><br>
+      <label>Confirm Password</label>
+      <input type="password" name="confirm_password" required placeholder="••••••••"><br>
 
-    <button type="submit">Sign Up</button>
-  </form>
+      <button type="submit">Sign Up</button>
+    </form>
 
-  <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
+    <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
+  </div>
 </body>
 </html>
