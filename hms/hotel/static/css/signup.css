@@ -1,0 +1,202 @@
+/* Sign Up Page Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: hsl(0, 0%, 98%);
+  color: hsl(20, 14%, 10%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 2rem 1rem;
+}
+
+/* Outer card wrapper that contains heading, form and alt link */
+body > div {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 2.25rem 2rem 1rem 2rem; /* tighter bottom padding */
+  border-radius: 0.75rem;
+  border: 1px solid hsl(40, 20%, 90%);
+  background-color: #fff;
+  box-shadow: 0 4px 20px -2px hsla(0, 0%, 0%, 0.08);
+}
+
+/* Back to Home Button */
+.back-home-btn,
+a[href*="home"] {
+  position: fixed !important;
+  top: 1.5rem !important;
+  left: 1.5rem !important;
+  z-index: 10;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: hsl(38, 92%, 50%);
+  color: #fff !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 8px hsla(38, 92%, 50%, 0.08);
+  transition: opacity 0.15s, box-shadow 0.15s;
+  border-radius: 0.5rem;
+}
+
+.back-home-btn:hover,
+a[href*="home"]:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 16px hsla(38, 92%, 50%, 0.15);
+}
+
+/* Create Account Heading */
+h2 {
+  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  margin-bottom: 1.25rem; /* reduce space above form */
+  text-align: center;
+  color: hsl(20, 14%, 10%);
+  width: 100%;
+}
+
+/* Form Card Container */
+form {
+  width: 100%;
+  margin: 0;
+  padding: 0; /* visuals handled by wrapper */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Error Messages */
+p[style*="color:red"] {
+  font-size: 0.875rem;
+  padding: 0.75rem;
+  margin: 0 auto 1rem;
+  max-width: 32rem;
+  color: #fff !important;
+  background-color: hsl(0, 84%, 60%);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+/* Form Labels */
+label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: hsl(20, 14%, 10%);
+  margin-bottom: 0.5rem;
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(40, 20%, 90%);
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(20, 14%, 10%);
+  font-size: 0.95rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: border-color 150ms, box-shadow 150ms;
+  margin-bottom: 0;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: hsl(38, 92%, 50%);
+  box-shadow: 0 0 0 3px hsla(38, 92%, 50%, 0.1);
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: hsl(215, 16%, 65%);
+}
+
+/* Remove default br spacing */
+br {
+  display: none;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem; /* keep existing top margin */
+  margin-bottom: 0; /* ensure no extra gap under button */
+  border-radius: 0.5rem;
+  background-color: hsl(38, 92%, 50%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 150ms, box-shadow 150ms;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.2);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Alternative Link Text - sits inside the same card wrapper */
+form + p {
+  margin-top: 0; /* flush with button */
+  text-align: center;
+  font-size: 0.95rem;
+  color: hsl(215, 16%, 46%);
+}
+
+form + p a {
+  color: hsl(38, 92%, 50%);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+form + p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .back-home-btn,
+  a[href*="home"] {
+    top: 0.75rem !important;
+    left: 0.75rem !important;
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  form {
+    padding: 2rem 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 640px) {
+  form {
+    padding: 3rem 2.5rem;
+  }
+}
