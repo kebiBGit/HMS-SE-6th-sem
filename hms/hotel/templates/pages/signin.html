@@ -1,39 +1,32 @@
+{% extends "base_message.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In • Himalayan Haven</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/signin.css' %}">
-</head>
-<body>
-  <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
-  
-  <div style="width: 100%; max-width: 32rem;">
-    <h2>Sign In</h2>
 
-  {% if messages %}
-  {% for message in messages %}
-    <p class="{{ message.tags }}">{{ message }}</p>
-  {% endfor %}
-  {% endif %}
+{% block title %}Sign In • Himalayan Haven{% endblock %}
 
-  <form method="POST" action="{% url 'signin' %}">
-  {% csrf_token %}
-  <label>Username/Email</label>
-  <input type="text" name="identifier" required placeholder="john123/you@example.com"><br>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
 
-  <label>Password</label>
-  <input type="password" name="password" required placeholder="••••••••"><br>
+{% block content %}
+<a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
 
-  <button type="submit">Sign In</button>
-  </form>
-  <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+<!-- Wrapper with orange border -->
+<div class="signin-wrapper">
+  <div class="signin-card" role="region" aria-labelledby="signinTitle">
+    <h2 id="signinTitle">Sign In</h2>
 
+    <form method="POST" action="{% url 'signin' %}">
+      {% csrf_token %}
+      <label for="identifier">Username/Email</label>
+      <input id="identifier" name="identifier" type="text" required placeholder="john123 / you@example.com">
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required placeholder="••••••••">
+
+      <button type="submit" class="primary-btn">Sign In</button>
+    </form>
+
+    <p class="alt-link">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

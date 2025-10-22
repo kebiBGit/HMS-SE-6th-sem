@@ -1,0 +1,106 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Himalayan Haven{% endblock %}</title>
+
+  {# Page-specific CSS (optional) #}
+  {% block extra_css %}{% endblock %}
+
+  <style>
+    /* Minimal styles for the top message box (keeps theme yellow) */
+    .bm-message-container {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      pointer-events: none; /* so it doesn't block clicks */
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .bm-message {
+      pointer-events: auto;
+      min-width: 280px;
+      max-width: 90vw;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      background: #fff;                /* keep background white */
+      border: 2px solid #facc15;      /* yellow border as default */
+      color: #111;                     /* default text color */
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      font-weight: 600;
+      text-align: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* status-specific text colors (only change text & border color) */
+    .bm-message.success { color: #166534; /* green text */ }
+    .bm-message.error   { color: #b91c1c; /* red text */ }
+    .bm-message.info    { color: #0b6fb5; /* blue text */ }
+    .bm-message.warning { color: #92400e; /* orange/brown text */ }
+
+    /* small screen tweak */
+    @media (max-width:420px) {
+      .bm-message { padding: .6rem .8rem; font-size: .95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  {# Top-centered message container (renders Django messages) #}
+  {% if messages %}
+    <div id="bmMessageContainer" class="bm-message-container" aria-live="polite">
+      {% for message in messages %}
+        {# message.tags may be "success", "error", "info", "warning" etc. #}
+        <div class="bm-message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {# Main child content block #}
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {# Page-specific scripts (optional) #}
+  {% block extra_scripts %}{% endblock %}
+
+  <script>
+    // Auto-hide messages: fade after 3s, then remove. Small, safe script that doesn't
+    // couple to any library. If page has no messages, nothing happens.
+    (function () {
+      const container = document.getElementById('bmMessageContainer');
+      if (!container) return;
+
+      // Slight entrance animation (so it doesn't simply pop)
+      const messages = container.querySelectorAll('.bm-message');
+      messages.forEach((m, i) => {
+        m.style.opacity = '0';
+        m.style.transform = 'translateY(-6px)';
+        setTimeout(() => {
+          m.style.opacity = '1';
+          m.style.transform = 'translateY(0)';
+        }, 20 + i * 80);
+      });
+
+      // Hide after 3 seconds (3000ms)
+      setTimeout(() => {
+        messages.forEach((m, i) => {
+          setTimeout(() => {
+            m.style.opacity = '0';
+            m.style.transform = 'translateY(-8px)';
+          }, i * 60);
+        });
+        // remove the container after animation completes
+        setTimeout(() => container.remove(), 600 + messages.length * 60);
+      }, 3000);
+    })();
+  </script>
+</body>
+</html>

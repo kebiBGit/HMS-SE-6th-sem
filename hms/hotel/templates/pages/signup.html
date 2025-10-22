@@ -1,49 +1,39 @@
+{% extends "base_message.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up • Himalayan Haven</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
-</head>
-<body>
+
+{% block title %}Sign Up • Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="preload" href="{% static 'css/signup.css' %}" as="style">
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
   <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
-  
-  <div style="width: 100%; max-width: 32rem;">
-    <h2>Create Account</h2>
 
-  {% if messages %}
-  {% for message in messages %}
-    <p class="{{ message.tags }}">{{ message }}</p>
-  {% endfor %}
-  {% endif %}
-  <form method="POST" action="{% url 'signup' %}">
-  {% csrf_token %}
-  <label>Full Name</label>
-  <input type="text" name="fullname" required placeholder="John Doe"><br>
+  <div class="signup-card" role="region" aria-labelledby="signupTitle">
+    <h2 id="signupTitle">Create Account</h2>
 
-  <label>Username</label>
-  <input type="text" name="username" required placeholder="john123"><br>
+    <form method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <label for="fullname">Full Name</label>
+      <input id="fullname" name="fullname" type="text" required placeholder="John Doe">
 
-  <label>Email</label>
-  <input type="email" name="email" required placeholder="you@example.com"><br>
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" required placeholder="john123">
 
-  <label>Password</label>
-  <input type="password" name="password" required placeholder="••••••••"><br>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com">
 
-  <label>Confirm Password</label>
-  <input type="password" name="confirm_password" required placeholder="••••••••"><br>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required placeholder="••••••••">
 
-  <button type="submit">Sign Up</button>
-</form>
-<p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>     
+      <label for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" name="confirm_password" type="password" required placeholder="••••••••">
 
+      <button type="submit" class="primary-btn">Sign Up</button>
+    </form>
+
+    <p class="alt-link">Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
   </div>
-</body>
-</html>
-
-
+{% endblock %}

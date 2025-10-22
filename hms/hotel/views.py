@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Booking
+from .models import Booking, ContactMessage
 
 # ------------------- Static Pages -------------------
 def home(request):
@@ -16,6 +16,24 @@ def about(request):
     return render(request, 'pages/about.html')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name').strip()
+        email = request.POST.get('email').strip()
+        subject = request.POST.get('subject').strip()
+        message = request.POST.get('message').strip()
+
+        if not name or not email or not subject or not message:
+            messages.error(request, "All fields are required.")
+        else:
+            ContactMessage.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message
+            )
+            messages.success(request, "Thank you for contacting us. We'll get back to you soon!")
+        return redirect('contact') 
+        
     return render(request, 'pages/contact.html')
 
 

@@ -1,35 +1,19 @@
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ===== Reset & Base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 
 body {
   background: hsl(0, 0%, 98%);
   color: hsl(20, 14%, 10%);
-  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   padding: 2rem 1rem;
+  min-height: 100vh;
 }
 
-/* Outer card wrapper */
-body > div {
-  width: 100%;
-  max-width: 32rem;
-  margin: 0 auto;
-  padding: 2.25rem 2rem 1rem 2rem;
-  border-radius: 0.75rem;
-  border: 1px solid hsl(40, 20%, 90%);
-  background-color: #fff;
-  box-shadow: 0 4px 20px -2px hsla(0, 0%, 0%, 0.08);
-}
-
-/* Back button */
+/* ===== Back Button ===== */
 .back-home-btn {
   position: fixed;
   top: 1.5rem;
@@ -40,128 +24,138 @@ body > div {
   text-decoration: none;
   border-radius: 0.5rem;
   font-weight: 500;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 8px hsla(38, 92%, 50%, 0.08);
-  transition: 0.15s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
+  z-index: 10;
 }
 
 .back-home-btn:hover {
   opacity: 0.9;
-  box-shadow: 0 4px 16px hsla(38, 92%, 50%, 0.15);
+  box-shadow: 0 4px 16px rgba(38, 92, 50, 0.15);
 }
 
-/* Heading */
-h2 {
+/* ===== Signin Container (Card with border) ===== */
+.signin-container {
+  width: 100%;
+  max-width: 600px;  /* Wider width */
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 2rem;      /* Padding around card */
+}
+
+/* ===== Signin Card ===== */
+.signin-card {
+  width: 100%;
+  padding: 3rem 2.5rem; /* Bigger padding for spacious feel */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* ===== Title ===== */
+.signin-card h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 2rem;     /* Bigger title */
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2rem; /* More spacing after title */
 }
 
-/* Messages */
-.success, .error, .info, .warning {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-}
-
-.success {
-  color: green;
-  background-color: hsl(120, 60%, 90%);
-}
-
-.error {
-  color: red;
-  background-color: hsl(0, 84%, 60%);
-}
-
-.info {
-  color: blue;
-  background-color: hsl(200, 60%, 90%);
-}
-
-.warning {
-  color: orange;
-  background-color: hsl(35, 80%, 90%);
-}
-
-/* Form */
+/* ===== Form ===== */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+  gap: 1.25rem; /* More spacing between inputs */
 }
 
 label {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: hsl(20, 14%, 10%);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"] {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.85rem 1rem; /* Bigger input fields */
   border-radius: 0.5rem;
-  border: 1px solid hsl(40, 20%, 90%);
+  border: 1px solid hsl(40, 20%, 85%);
   font-size: 0.95rem;
-  font-family: 'Inter', sans-serif;
-  transition: 0.15s;
+  background: #fafafa;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
 }
 
 input:focus {
   outline: none;
-  border-color: hsl(38, 92%, 50%);
-  box-shadow: 0 0 0 3px hsla(38, 92%, 50%, 0.1);
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2);
+  background: #fff;
 }
 
-button[type="submit"] {
+/* ===== Primary Button ===== */
+.primary-btn {
+  margin-top: 1rem;
   width: 100%;
-  padding: 0.75rem;
-  background-color: hsl(38, 92%, 50%);
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 0.9rem;
+  background: #facc15;
+  color: #000;
   border: none;
   border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: 0.15s;
+  transition: all 0.2s ease;
 }
 
-button[type="submit"]:hover {
-  opacity: 0.9;
-  box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.2);
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(250, 204, 21, 0.2);
+  background: #fbbf24;
 }
 
-/* Alternative link */
-form + p {
+/* ===== Alternative Link ===== */
+.alt-link {
   text-align: center;
-  font-size: 0.95rem;
+  margin-top: 1.5rem;
   color: hsl(215, 16%, 46%);
+  font-size: 0.95rem;
+  padding-top: 1rem;
+  border-top: 1px solid hsl(40, 20%, 90%);
 }
 
-form + p a {
+.alt-link a {
   color: hsl(38, 92%, 50%);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
-form + p a:hover {
+.alt-link a:hover {
   text-decoration: underline;
+  color: #f59e0b;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-  body > div {
+  .signin-container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .signin-card {
     padding: 2rem 1.5rem;
   }
 
-  h2 {
+  .signin-card h2 {
     font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    gap: 1rem;
   }
 
   .back-home-btn {
@@ -169,11 +163,5 @@ form + p a:hover {
     left: 0.75rem;
     font-size: 0.85rem;
     padding: 0.375rem 0.75rem;
-  }
-}
-
-@media (min-width: 640px) {
-  form {
-    padding: 3rem 2.5rem;
   }
 }
