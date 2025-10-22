@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Terms of Service - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/terms.css' %}">
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-home-btn">← Back to Home</a>
+
+<div class="terms-body">
+  <main class="terms-main">
+    <div class="terms-container">
+      <header class="terms-header">
+        <h1 class="terms-title">Terms of Service</h1>
+        <p class="terms-updated">Last Updated: October 22, 2025</p>
+      </header>
+
+      <div class="terms-content">
+        <section class="terms-intro">
+          <p>Welcome to <strong>Himalayan Haven</strong>.</p>
+          <p>By accessing or using our website and any associated services, you agree to be bound by the following Terms of Service. If you do not agree with these terms, please do not use our website or services.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>1. Use of the Website</h2>
+          <p>You agree to use our website for lawful purposes only and in a way that does not violate the rights of, restrict, or inhibit the use and enjoyment of this site by any third party.</p>
+          <p>You must not:</p>
+          <ul>
+            <li>Use false information when making a reservation.</li>
+            <li>Attempt to gain unauthorized access to any part of the site.</li>
+            <li>Use the website in any way that could damage or disrupt our services.</li>
+          </ul>
+        </section>
+
+        <section class="terms-section">
+          <h2>2. Account Registration</h2>
+          <p>To access certain features (like booking or managing reservations), you may need to create an account. You agree to:</p>
+          <ul>
+            <li>Provide accurate and complete information during registration.</li>
+            <li>Keep your login details secure.</li>
+            <li>Notify us immediately of any unauthorized use of your account.</li>
+          </ul>
+          <p>You are responsible for all activities that occur under your account.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>3. Reservations & Payments</h2>
+          <p>By booking through our website:</p>
+          <ul>
+            <li>You agree to provide valid payment information.</li>
+            <li>You agree to our cancellation and refund policies (which will be displayed during booking).</li>
+            <li>You authorize us to charge the specified amount for your booking.</li>
+          </ul>
+          <p>We reserve the right to cancel or refuse any reservation at our discretion.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>4. User Conduct</h2>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Post or transmit any unlawful, threatening, abusive, defamatory, or otherwise objectionable content.</li>
+            <li>Use our services to harm, threaten, or harass other users or hotel staff.</li>
+            <li>Attempt to interfere with the proper functioning of our website or services.</li>
+          </ul>
+        </section>
+
+        <section class="terms-section">
+          <h2>5. Intellectual Property</h2>
+          <p>All content on our website, including logos, designs, text, graphics, and software, is owned or licensed by Himalayan Haven and is protected by copyright and intellectual property laws. You may not reproduce, distribute, or use any part of the website content without our written permission.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>6. Termination</h2>
+          <p>We reserve the right to suspend or terminate your access to our website at any time, without notice, for violating these Terms of Service or for any other reason.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>7. Limitation of Liability</h2>
+          <p>To the fullest extent permitted by law, we are not liable for any damages or losses arising from:</p>
+          <ul>
+            <li>Use or inability to use our website.</li>
+            <li>Any bookings or transactions made through the site.</li>
+            <li>Errors or inaccuracies in the website content.</li>
+          </ul>
+          <p><strong>You use our services at your own risk.</strong></p>
+        </section>
+
+        <section class="terms-section">
+          <h2>8. Changes to the Terms</h2>
+          <p>We may update these Terms of Service from time to time. When we do, we will revise the "Last Updated" date above. Continued use of the website after changes means you accept the new terms.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>9. Governing Law</h2>
+          <p>These Terms are governed by and construed in accordance with the laws of the Hotel Association of Nepal, without regard to its conflict of law principles.</p>
+        </section>
+
+        <section class="terms-section">
+          <h2>10. Contact Us</h2>
+          <p>If you have any questions about these Terms of Service, please contact us:</p>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:himalayanhaven@gmail.com">himalayanhaven@gmail.com</a></li>
+            <li><strong>Phone:</strong> +977-1-4567890</li>
+            <li><strong>Address:</strong> Thamel, Kathmandu, Nepal</li>
+          </ul>
+        </section>
+
+        <div class="terms-footer">
+          <p><em>By using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</em></p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,202 @@
+/* Terms of Service Page Styles */
+
+.terms-body {
+  background: hsl(0, 0%, 98%);
+  color: hsl(20, 14%, 10%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Back to Home Button */
+.back-home-btn {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: hsl(38, 92%, 50%);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 8px hsla(38, 92%, 50%, 0.08);
+  transition: opacity 0.15s, box-shadow 0.15s;
+  border-radius: 0.5rem;
+}
+
+.back-home-btn:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 16px hsla(38, 92%, 50%, 0.15);
+}
+
+/* Main Content */
+.terms-main {
+  padding: 6rem 1.5rem 3rem;
+  flex-grow: 1;
+}
+
+.terms-container {
+  max-width: 50rem;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(40, 20%, 90%);
+  box-shadow: 0 4px 20px -2px hsla(0, 0%, 0%, 0.08);
+  padding: 2.5rem;
+}
+
+/* Header */
+.terms-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid hsl(38, 92%, 50%);
+}
+
+.terms-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: hsl(20, 14%, 10%);
+  margin: 0 0 0.5rem;
+}
+
+.terms-updated {
+  color: hsl(215, 16%, 46%);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Content */
+.terms-content {
+  line-height: 1.7;
+}
+
+.terms-intro {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: hsl(38, 92%, 97%);
+  border-left: 4px solid hsl(38, 92%, 50%);
+  border-radius: 0.375rem;
+}
+
+.terms-intro p {
+  margin: 0 0 0.75rem;
+}
+
+.terms-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section {
+  margin-bottom: 2rem;
+}
+
+.terms-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: hsl(20, 14%, 10%);
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid hsl(40, 20%, 90%);
+}
+
+.terms-section p {
+  margin: 0 0 1rem;
+  color: hsl(20, 14%, 20%);
+}
+
+.terms-section p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section ul {
+  margin: 0.75rem 0 1rem 1.5rem;
+  padding: 0;
+}
+
+.terms-section li {
+  margin-bottom: 0.5rem;
+  color: hsl(20, 14%, 20%);
+}
+
+.terms-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* Contact List */
+.contact-list {
+  list-style: none;
+  margin: 1rem 0 0 0 !important;
+  padding: 1rem;
+  background: hsl(210, 40%, 98%);
+  border-radius: 0.375rem;
+}
+
+.contact-list li {
+  margin-bottom: 0.5rem;
+  color: hsl(20, 14%, 20%);
+}
+
+.contact-list li:last-child {
+  margin-bottom: 0;
+}
+
+.contact-list a {
+  color: hsl(38, 92%, 50%);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.terms-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid hsl(40, 20%, 90%);
+  text-align: center;
+}
+
+.terms-footer p {
+  margin: 0;
+  color: hsl(215, 16%, 46%);
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .back-home-btn {
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .terms-main {
+    padding: 4.5rem 1rem 2rem;
+  }
+
+  .terms-container {
+    padding: 1.5rem;
+  }
+
+  .terms-title {
+    font-size: 2rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .terms-container {
+    padding: 3rem;
+  }
+}
