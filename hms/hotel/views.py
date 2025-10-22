@@ -110,3 +110,29 @@ def logout(request):
 def profile(request):
     bookings = Booking.objects.filter(user=request.user, status__in=['ACTIVE', 'COMPLETED']).order_by('-check_in')
     return render(request, 'pages/profile.html', {'bookings': bookings})
+
+# ------------------- Booking Page -------------------
+@login_required
+def booking(request):
+    if request.method == 'POST':
+        room_type = request.POST.get('room_type')
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        guests = request.POST.get('guests')
+
+        if not room_type or not check_in or not check_out or not guests:
+            messages.error(request, "All fields are required.")
+            return redirect('booking')
+
+        Booking.objects.create(
+            user=request.user,
+            room_type=room_type,
+            check_in=check_in,
+            check_out=check_out,
+            guests=guests,
+            status='ACTIVE'
+        )
+        messages.success(request, "Booking successful!")
+        return redirect('profile')
+
+    return render(request, 'pages/booking.html')

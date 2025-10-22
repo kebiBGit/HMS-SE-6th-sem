@@ -1,15 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if messages %}
-    {% for message in messages %} 
-    {{message}}
-    {% endfor %}
-    {% endif %}
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Book a Room - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/booking.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="booking-page">
+  <div class="booking-hero">
+    <div class="booking-hero-overlay"></div>
+    <div class="booking-hero-content">
+      <h1 class="booking-hero-title">Book Your Stay</h1>
+      <p class="booking-hero-subtitle">Experience luxury in the heart of the Himalayas</p>
+    </div>
+  </div>
+
+  <div class="booking-container">
+    <div class="booking-card">
+      <h2 class="booking-title">Make a Reservation</h2>
+      
+      <form class="booking-form" method="POST" action="{% url 'booking' %}">
+        {% csrf_token %}
+        
+        <!-- Date Selection -->
+        <div class="booking-row">
+          <div class="booking-field">
+            <label for="check_in" class="booking-label">Check In</label>
+            <input 
+              type="date" 
+              id="check_in" 
+              name="check_in" 
+              class="booking-input"
+              required
+            >
+          </div>
+
+          <div class="booking-field">
+            <label for="check_out" class="booking-label">Check Out</label>
+            <input 
+              type="date" 
+              id="check_out" 
+              name="check_out" 
+              class="booking-input"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Guest Selection -->
+        <div class="booking-row">
+          <div class="booking-field">
+            <label for="adults" class="booking-label">Adults</label>
+            <input 
+              type="number" 
+              id="adults" 
+              name="adults" 
+              class="booking-input"
+              min="1"
+              max="10"
+              value="1"
+              required
+            >
+          </div>
+
+          <div class="booking-field">
+            <label for="children" class="booking-label">Children</label>
+            <input 
+              type="number" 
+              id="children" 
+              name="children" 
+              class="booking-input"
+              min="0"
+              max="10"
+              value="0"
+            >
+          </div>
+
+          <div class="booking-field">
+            <label for="promo_code" class="booking-label">Promo Code</label>
+            <input 
+              type="text" 
+              id="promo_code" 
+              name="promo_code" 
+              class="booking-input"
+              placeholder="Enter code"
+            >
+          </div>
+        </div>
+
+        <!-- Room Selection -->
+        <div class="booking-field-full">
+          <label for="room_type" class="booking-label">Room Type</label>
+          <select id="room_type" name="room_type" class="booking-select" required>
+            <option value="">Select Room Type</option>
+            <option value="executive">Executive</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="suite">Suite</option>
+            <option value="presidential">Presidential Suite</option>
+          </select>
+        </div>
+
+        <!-- Room Number Selection -->
+        <div class="booking-field-full">
+          <label for="room_number" class="booking-label">Room No</label>
+          <select id="room_number" name="room_number" class="booking-select" multiple size="4">
+            <option value="101">101</option>
+            <option value="102">102</option>
+            <option value="201">201</option>
+            <option value="202">202</option>
+            <option value="301">301</option>
+            <option value="302">302</option>
+          </select>
+          <p class="booking-hint">Hold Ctrl/Cmd to select multiple rooms</p>
+        </div>
+
+        <!-- Booking Summary -->
+        <div class="booking-summary">
+          <div class="summary-row">
+            <span class="summary-label">Price per night:</span>
+            <span class="summary-value" id="price_per_night">$0</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Rooms selected:</span>
+            <span class="summary-value" id="rooms_selected">0</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Total days:</span>
+            <span class="summary-value" id="total_days">0</span>
+          </div>
+          <div class="summary-row total">
+            <span class="summary-label">Total Amount:</span>
+            <span class="summary-value" id="total_amount">$0</span>
+          </div>
+          <p class="summary-formula">Total = Total days × Price per night × Rooms selected</p>
+        </div>
+
+        <!-- Special Request -->
+        <div class="booking-field-full">
+          <label for="special_request" class="booking-label">Special Request</label>
+          <textarea 
+            id="special_request" 
+            name="special_request" 
+            class="booking-textarea"
+            rows="4"
+            placeholder="Any special requests or requirements? (e.g., early check-in, extra pillows, dietary restrictions)"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="booking-submit-btn">Book Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
