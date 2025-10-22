@@ -16,24 +16,24 @@
   <div style="width: 100%; max-width: 32rem;">
     <h2>Sign In</h2>
 
-    {% if messages %}
-      {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-      {% endfor %}
-    {% endif %}
+  {% if messages %}
+  {% for message in messages %}
+    <p class="{{ message.tags }}">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
 
-    <form method="POST" action="{% url 'signin' %}">
-      {% csrf_token %}
-      <label>Email</label>
-      <input type="email" name="email" required placeholder="you@example.com"><br>
+  <form method="POST" action="{% url 'signin' %}">
+  {% csrf_token %}
+  <label>Username/Email</label>
+  <input type="text" name="identifier" required placeholder="john123/you@example.com"><br>
 
-      <label>Password</label>
-      <input type="password" name="password" required placeholder="••••••••"><br>
+  <label>Password</label>
+  <input type="password" name="password" required placeholder="••••••••"><br>
 
-      <button type="submit">Sign In</button>
-    </form>
+  <button type="submit">Sign In</button>
+  </form>
+  <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
 
-    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
   </div>
 </body>
 </html>

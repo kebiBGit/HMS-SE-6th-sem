@@ -23,7 +23,7 @@
           {{ request.user.first_name|default:request.user.username|first|upper }}
         </div>
         <div class="profile-headings">
-          <h1 class="profile-title">{{ request.user.first_name|default:request.user.username }}</h1>
+          <h1 class="profile-title">{{ request.user.first_name }} ({{ request.user.username }})</h1>
           <p class="profile-subtitle">{{ request.user.email }}</p>
         </div>
       </div>

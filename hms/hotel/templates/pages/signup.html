@@ -16,30 +16,34 @@
   <div style="width: 100%; max-width: 32rem;">
     <h2>Create Account</h2>
 
-    {% if messages %}
-      {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-      {% endfor %}
-    {% endif %}
+  {% if messages %}
+  {% for message in messages %}
+    <p class="{{ message.tags }}">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+  <form method="POST" action="{% url 'signup' %}">
+  {% csrf_token %}
+  <label>Full Name</label>
+  <input type="text" name="fullname" required placeholder="John Doe"><br>
 
-    <form method="POST" action="{% url 'signup' %}">
-      {% csrf_token %}
-      <label>Full Name</label>
-      <input type="text" name="fullname" required placeholder="John Doe"><br>
+  <label>Username</label>
+  <input type="text" name="username" required placeholder="john123"><br>
 
-      <label>Email</label>
-      <input type="email" name="email" required placeholder="you@example.com"><br>
+  <label>Email</label>
+  <input type="email" name="email" required placeholder="you@example.com"><br>
 
-      <label>Password</label>
-      <input type="password" name="password" required placeholder="••••••••"><br>
+  <label>Password</label>
+  <input type="password" name="password" required placeholder="••••••••"><br>
 
-      <label>Confirm Password</label>
-      <input type="password" name="confirm_password" required placeholder="••••••••"><br>
+  <label>Confirm Password</label>
+  <input type="password" name="confirm_password" required placeholder="••••••••"><br>
 
-      <button type="submit">Sign Up</button>
-    </form>
+  <button type="submit">Sign Up</button>
+</form>
+<p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>     
 
-    <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
   </div>
 </body>
 </html>
+
+

@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import User, Booking
+from .models import Booking
 
 # ------------------- Static Pages -------------------
 def home(request):
@@ -22,6 +23,7 @@ def contact(request):
 def signup(request):
     if request.method == 'POST':
         full_name = request.POST.get('fullname')
+        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
@@ -30,14 +32,15 @@ def signup(request):
             messages.error(request, "Passwords do not match.")
             return redirect('signup')
 
-        if User.objects.filter(username=email).exists():
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken.")
+            return redirect('signup')
+
+        if User.objects.filter(email=email).exists():
             messages.error(request, "Email already registered.")
             return redirect('signup')
 
-        user = User.objects.create_user(username=email, email=email, password=password)
-        user.first_name = full_name
-        user.save()
-
+        User.objects.create_user(username=username, email=email, password=password, first_name=full_name)
         messages.success(request, "Account created successfully. Please sign in.")
         return redirect('signin')
 
@@ -46,15 +49,22 @@ def signup(request):
 
 def signin(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        identifier = request.POST.get('identifier')  # username or email
         password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
 
+        # Check if identifier is email
+        try:
+            user_obj = User.objects.get(email=identifier)
+            username = user_obj.username
+        except User.DoesNotExist:
+            username = identifier
+
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
             return redirect('profile')
         else:
-            messages.error(request, "Invalid email or password.")
+            messages.error(request, "Invalid username/email or password.")
             return redirect('signin')
 
     return render(request, 'pages/signin.html')
@@ -63,6 +73,7 @@ def signin(request):
 def logout(request):
     auth_logout(request)
     return redirect('home')
+
 
 # ------------------- Profile -------------------
 @login_required

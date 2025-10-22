@@ -1,34 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import User
 from django.utils import timezone
-
-
-
-# -------------------
-# Custom User
-# -------------------
-class User(AbstractUser):
-    email = models.EmailField(unique=True)
-    full_name = models.CharField(max_length=100, blank=True)
-
-    # Override username field
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']  # still required for compatibility
-
-    groups = models.ManyToManyField(
-        Group,
-        related_name="hotel_users",
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="hotel_user_permissions",
-        blank=True
-    )
-
-    def __str__(self):
-        return self.full_name or self.email
-
 
 # -------------------
 # Room Model
@@ -71,10 +43,9 @@ class Booking(models.Model):
     canceled_at = models.DateTimeField(blank=True, null=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     notes = models.TextField(blank=True)
-    
 
     def __str__(self):
-        return f"Booking #{self.id} by {self.user.email}"
+        return f"Booking #{self.id} by {self.user.username}"
 
     def is_past_booking(self):
         return self.check_out < timezone.localdate()
