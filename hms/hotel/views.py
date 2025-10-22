@@ -15,6 +15,18 @@ def rooms(request):
 def about(request):
     return render(request, 'pages/about.html')
 
+# ------------------- Policy Page -------------------
+def privacy_policy(request):
+    return render(request, 'pages/privacy-policy.html')
+
+def terms_of_service(request):
+    return render(request, 'pages/terms-of-service.html')
+
+def cancellation_policy(request):
+    return render(request, 'pages/cancellation-policy.html')
+
+
+# ------------------- Contact Page -------------------
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name').strip()
