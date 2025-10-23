@@ -3,156 +3,203 @@
 
 {% block title %}Book a Room - Himalayan Haven{% endblock %}
 
+{% block extra_head %}
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/booking.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="booking-page">
-  <div class="booking-hero">
-    <div class="booking-hero-overlay"></div>
-    <div class="booking-hero-content">
-      <h1 class="booking-hero-title">Book Your Stay</h1>
-      <p class="booking-hero-subtitle">Experience luxury in the heart of the Himalayas</p>
+<div class="booking-container">
+  <h1 class="booking-title">Book Your Stay</h1>
+
+  <form method="POST" action="{% url 'booking' %}" id="bookingForm">
+    {% csrf_token %}
+
+    <!-- Dates -->
+    <div class="booking-row">
+      <div class="booking-field">
+        <label>Check In</label>
+        <input type="date" name="check_in" id="check_in" required>
+      </div>
+      <div class="booking-field">
+        <label>Check Out</label>
+        <input type="date" name="check_out" id="check_out" required>
+      </div>
     </div>
-  </div>
 
-  <div class="booking-container">
-    <div class="booking-card">
-      <h2 class="booking-title">Make a Reservation</h2>
-      
-      <form class="booking-form" method="POST" action="{% url 'booking' %}">
-        {% csrf_token %}
-        
-        <!-- Date Selection -->
-        <div class="booking-row">
-          <div class="booking-field">
-            <label for="check_in" class="booking-label">Check In</label>
-            <input 
-              type="date" 
-              id="check_in" 
-              name="check_in" 
-              class="booking-input"
-              required
-            >
-          </div>
-
-          <div class="booking-field">
-            <label for="check_out" class="booking-label">Check Out</label>
-            <input 
-              type="date" 
-              id="check_out" 
-              name="check_out" 
-              class="booking-input"
-              required
-            >
-          </div>
-        </div>
-
-        <!-- Guest Selection -->
-        <div class="booking-row">
-          <div class="booking-field">
-            <label for="adults" class="booking-label">Adults</label>
-            <input 
-              type="number" 
-              id="adults" 
-              name="adults" 
-              class="booking-input"
-              min="1"
-              max="10"
-              value="1"
-              required
-            >
-          </div>
-
-          <div class="booking-field">
-            <label for="children" class="booking-label">Children</label>
-            <input 
-              type="number" 
-              id="children" 
-              name="children" 
-              class="booking-input"
-              min="0"
-              max="10"
-              value="0"
-            >
-          </div>
-
-          <div class="booking-field">
-            <label for="promo_code" class="booking-label">Promo Code</label>
-            <input 
-              type="text" 
-              id="promo_code" 
-              name="promo_code" 
-              class="booking-input"
-              placeholder="Enter code"
-            >
-          </div>
-        </div>
-
-        <!-- Room Selection -->
-        <div class="booking-field-full">
-          <label for="room_type" class="booking-label">Room Type</label>
-          <select id="room_type" name="room_type" class="booking-select" required>
-            <option value="">Select Room Type</option>
-            <option value="executive">Executive</option>
-            <option value="deluxe">Deluxe</option>
-            <option value="suite">Suite</option>
-            <option value="presidential">Presidential Suite</option>
-          </select>
-        </div>
-
-        <!-- Room Number Selection -->
-        <div class="booking-field-full">
-          <label for="room_number" class="booking-label">Room No</label>
-          <select id="room_number" name="room_number" class="booking-select" multiple size="4">
-            <option value="101">101</option>
-            <option value="102">102</option>
-            <option value="201">201</option>
-            <option value="202">202</option>
-            <option value="301">301</option>
-            <option value="302">302</option>
-          </select>
-          <p class="booking-hint">Hold Ctrl/Cmd to select multiple rooms</p>
-        </div>
-
-        <!-- Booking Summary -->
-        <div class="booking-summary">
-          <div class="summary-row">
-            <span class="summary-label">Price per night:</span>
-            <span class="summary-value" id="price_per_night">$0</span>
-          </div>
-          <div class="summary-row">
-            <span class="summary-label">Rooms selected:</span>
-            <span class="summary-value" id="rooms_selected">0</span>
-          </div>
-          <div class="summary-row">
-            <span class="summary-label">Total days:</span>
-            <span class="summary-value" id="total_days">0</span>
-          </div>
-          <div class="summary-row total">
-            <span class="summary-label">Total Amount:</span>
-            <span class="summary-value" id="total_amount">$0</span>
-          </div>
-          <p class="summary-formula">Total = Total days × Price per night × Rooms selected</p>
-        </div>
-
-        <!-- Special Request -->
-        <div class="booking-field-full">
-          <label for="special_request" class="booking-label">Special Request</label>
-          <textarea 
-            id="special_request" 
-            name="special_request" 
-            class="booking-textarea"
-            rows="4"
-            placeholder="Any special requests or requirements? (e.g., early check-in, extra pillows, dietary restrictions)"
-          ></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="booking-submit-btn">Book Now</button>
-      </form>
+    <!-- Room Type -->
+    <div class="booking-field-full">
+      <label>Room Type</label>
+      <select name="room_type" id="room_type" required>
+        <option value="">Select Room Type</option>
+        {% for code, name in room_types %}
+        <option value="{{ code }}">{{ name }}</option>
+        {% endfor %}
+      </select>
     </div>
-  </div>
+
+    <!-- Room Numbers -->
+    <div class="booking-field-full">
+      <label>Available Room Numbers</label>
+      <select name="room_number" id="room_number" multiple size="5" required>
+        <option>Select room type first</option>
+      </select>
+      <p class="hint">Hold Ctrl/Cmd to select multiple rooms</p>
+    </div>
+
+    <!-- Price and Summary -->
+    <div class="booking-summary">
+      <p><b>Price per Night:</b> <span id="price_per_night">0</span></p>
+      <p><b>Max Occupancy:</b> <span id="max_occupancy">-</span></p>
+      <p><b>Total Days:</b> <span id="total_days">0</span></p>
+      <p><b>Rooms Selected:</b> <span id="rooms_selected">0</span></p>
+      <p><b>Total Amount:</b> <span id="total_amount">0</span></p>
+    </div>
+
+    <!-- Special Request -->
+    <div class="booking-field-full">
+      <label>Special Request</label>
+      <textarea name="special_request" rows="3" placeholder="Any special requests?"></textarea>
+    </div>
+
+    <button type="submit" class="booking-submit-btn">Book Now</button>
+  </form>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const roomTypeSelect = document.getElementById('room_type');
+const roomNumberSelect = document.getElementById('room_number');
+const checkInInput = document.getElementById('check_in');
+const checkOutInput = document.getElementById('check_out');
+const priceEl = document.getElementById('price_per_night');
+const occEl = document.getElementById('max_occupancy');
+const roomsSelectedEl = document.getElementById('rooms_selected');
+const totalDaysEl = document.getElementById('total_days');
+const totalAmountEl = document.getElementById('total_amount');
+
+let currentPrice = 0;
+
+// Set today's date as minimum for both fields
+const today = new Date().toISOString().split("T")[0];
+checkInInput.min = today;
+checkOutInput.min = today;
+
+// Smooth number animation
+function animateValue(el, start, end, duration = 300) {
+  const range = end - start;
+  let startTime = null;
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    el.textContent = (start + range * progress).toFixed(2);
+    if (progress < 1) window.requestAnimationFrame(step);
+  }
+  window.requestAnimationFrame(step);
+}
+
+//  Handle all date logic — including clearing
+function syncDates() {
+  const checkIn = checkInInput.value ? new Date(checkInInput.value) : null;
+  const checkOut = checkOutInput.value ? new Date(checkOutInput.value) : null;
+
+  if (checkIn) {
+    // set checkout min to check-in date
+    checkOutInput.min = checkInInput.value;
+
+    // if checkout is before check-in, fix it
+    if (checkOut && checkOut < checkIn) {
+      checkOutInput.value = checkInInput.value;
+    }
+  } else {
+    // if check-in cleared → reset checkout min to today
+    checkOutInput.min = today;
+  }
+
+  if (checkOut) {
+    // set check-in max to checkout date
+    checkInInput.max = checkOutInput.value;
+
+    // if check-in after checkout, fix it
+    if (checkIn && checkIn > checkOut) {
+      checkInInput.value = checkOutInput.value;
+    }
+  } else {
+    //  if checkout cleared → remove check-in max limit
+    checkInInput.removeAttribute('max');
+  }
+
+  calcTotal();
+}
+
+// Fetch rooms by type
+roomTypeSelect.addEventListener('change', async () => {
+  const type = roomTypeSelect.value;
+  roomNumberSelect.innerHTML = "";
+  priceEl.textContent = '0';
+  occEl.textContent = '-';
+  currentPrice = 0;
+
+  if (!type) return;
+
+  const res = await fetch(`?room_type=${type}`, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+  const data = await res.json();
+
+  if (data.rooms.length === 0) {
+    roomNumberSelect.innerHTML = "<option>No available rooms</option>";
+    return;
+  }
+
+  data.rooms.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r.room_number;
+    opt.textContent = r.room_number;
+    opt.dataset.price = r.price_per_night;
+    opt.dataset.occupancy = r.max_occupancy;
+    roomNumberSelect.appendChild(opt);
+  });
+
+  // Use first available room data
+  const firstRoom = data.rooms[0];
+  currentPrice = firstRoom.price_per_night;
+  animateValue(priceEl, parseFloat(priceEl.textContent), currentPrice);
+  occEl.textContent = firstRoom.max_occupancy;
+
+  calcTotal();
+});
+
+// Calculate totals
+function calcTotal() {
+  const checkIn = new Date(checkInInput.value);
+  const checkOut = new Date(checkOutInput.value);
+  let days = (checkOut - checkIn) / (1000 * 60 * 60 * 24);
+
+  // Always at least 1 day
+  if (isNaN(days) || days < 1) days = 1;
+
+  const selectedOptions = [...roomNumberSelect.selectedOptions];
+  const totalPrice = selectedOptions.reduce((sum, opt) => sum + parseFloat(opt.dataset.price || 0), 0);
+
+  totalDaysEl.textContent = days;
+  roomsSelectedEl.textContent = selectedOptions.length;
+
+  animateValue(totalAmountEl, parseFloat(totalAmountEl.textContent), totalPrice * days);
+}
+
+// Event listeners
+checkInInput.addEventListener('change', syncDates);
+checkOutInput.addEventListener('change', syncDates);
+roomNumberSelect.addEventListener('change', calcTotal);
+
+// Also handle manual clearing (for browsers where "clear" doesn't trigger change)
+checkInInput.addEventListener('input', syncDates);
+checkOutInput.addEventListener('input', syncDates);
+</script>
+
 {% endblock %}

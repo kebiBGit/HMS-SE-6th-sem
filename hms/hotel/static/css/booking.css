@@ -1,180 +1,106 @@
-/* Booking Page Styles */
-
-.booking-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, hsl(40, 95%, 98%) 0%, hsl(40, 85%, 96%) 100%);
-}
-
-/* Hero Section */
-.booking-hero {
-  position: relative;
-  height: 400px;
-  background: linear-gradient(
-    135deg,
-    hsl(38, 92%, 50%) 0%,
-    hsl(38, 92%, 45%) 100%
-  );
-  background-image: url('/static/images/hotel-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.booking-hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    hsla(38, 92%, 50%, 0.85) 0%,
-    hsla(20, 14%, 10%, 0.7) 100%
-  );
-}
-
-.booking-hero-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: white;
-  padding: 0 1rem;
-}
-
-.booking-hero-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-  text-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.3);
-  letter-spacing: -0.02em;
-}
-
-.booking-hero-subtitle {
-  font-size: 1.375rem;
-  font-weight: 400;
-  margin: 0;
-  text-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.3);
-}
-
-/* Booking Container */
+/* === Booking Form Integration === */
 .booking-container {
-  max-width: 900px;
-  margin: -80px auto 4rem;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 10;
-}
-
-.booking-card {
-  background: white;
+  background: #fff;
   border-radius: 1rem;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.12);
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 28px hsla(0, 0%, 0%, 0.12);
   border: 1px solid hsl(40, 20%, 90%);
+  margin: 3rem auto 5rem auto;
+  max-width: 700px; /* form width */
 }
 
-.booking-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: hsl(20, 14%, 10%);
-  margin: 0 0 2rem 0;
-  text-align: center;
-  padding-bottom: 1.5rem;
-  border-bottom: 3px solid hsl(38, 92%, 50%);
-}
-
-/* Form Styles */
-.booking-form {
+.booking-container form {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-}
-
-.booking-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
+  align-items: center;
 }
 
-.booking-field {
+/* Row Layout for check-in / check-out */
+.booking-row {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
+.booking-row .booking-field {
+  flex: 1;
+  min-width: 140px;
+  max-width: 48%;
+}
+
+/* Fields */
+.booking-field,
 .booking-field-full {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
-.booking-label {
+.booking-field-full {
+  max-width: 400px; /* limit width for selects and textarea */
+}
+
+/* Labels */
+.booking-field label,
+.booking-field-full label {
   font-weight: 600;
+  color: hsl(20, 14%, 15%);
   font-size: 0.9375rem;
-  color: hsl(20, 14%, 20%);
-  letter-spacing: 0.01em;
 }
 
-.booking-input,
-.booking-select,
-.booking-textarea {
-  padding: 0.875rem 1rem;
+/* Inputs */
+.booking-field input,
+.booking-field-full select,
+.booking-field-full textarea {
+  padding: 0.6rem 0.9rem;
   border: 2px solid hsl(40, 20%, 85%);
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: hsl(20, 14%, 20%);
+  color: hsl(20, 14%, 15%);
   background: white;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* smooth transition for focus and size */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.booking-input:focus,
-.booking-select:focus,
-.booking-textarea:focus {
+.booking-field input:focus,
+.booking-field-full select:focus,
+.booking-field-full textarea:focus {
   outline: none;
   border-color: hsl(38, 92%, 50%);
-  box-shadow: 0 0 0 3px hsla(38, 92%, 50%, 0.1);
+  box-shadow: 0 0 0 3px hsla(38, 92%, 50%, 0.15);
 }
 
-.booking-input::placeholder,
-.booking-textarea::placeholder {
-  color: hsl(215, 16%, 56%);
-}
-
-.booking-select {
-  cursor: pointer;
-}
-
-.booking-select[multiple] {
+/* Multi-select Room Numbers */
+.booking-field-full select[multiple] {
   padding: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+  transition: all 0.3s ease; /* smooth transition */
+  background: hsl(38, 95%, 98%); /* subtle background for better UI */
+  border-radius: 0.5rem;
+  border: 1px solid hsl(40, 20%, 85%);
 }
 
-.booking-select option {
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+/* Options */
+.booking-field-full option {
+  padding: 0.3rem 0.5rem;
 }
 
-.booking-select option:checked {
+.booking-field-full option:checked {
   background: hsl(38, 92%, 50%);
   color: white;
 }
 
-.booking-hint {
+.hint {
   font-size: 0.8125rem;
   color: hsl(215, 16%, 56%);
-  margin: 0.25rem 0 0 0;
   font-style: italic;
-}
-
-.booking-textarea {
-  resize: vertical;
-  min-height: 100px;
-  line-height: 1.6;
+  margin-top: 0.25rem;
 }
 
 /* Booking Summary */
@@ -182,143 +108,88 @@
   background: hsl(38, 95%, 98%);
   border: 2px solid hsl(38, 92%, 50%);
   border-radius: 0.75rem;
-  padding: 1.75rem;
+  padding: 1.5rem;
   margin: 1rem 0;
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.625rem 0;
-  border-bottom: 1px solid hsl(40, 20%, 88%);
-}
-
-.summary-row:last-of-type {
-  border-bottom: none;
-}
-
-.summary-row.total {
-  margin-top: 0.75rem;
-  padding-top: 1rem;
-  border-top: 2px solid hsl(38, 92%, 50%);
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.summary-label {
-  font-weight: 500;
-  color: hsl(20, 14%, 30%);
-}
-
-.summary-value {
-  font-weight: 600;
-  color: hsl(38, 92%, 40%);
-  font-size: 1.0625rem;
-}
-
-.summary-row.total .summary-value {
-  font-size: 1.5rem;
-  color: hsl(38, 92%, 35%);
-}
-
-.summary-formula {
-  font-size: 0.8125rem;
-  color: hsl(215, 16%, 46%);
-  text-align: center;
-  margin: 0.75rem 0 0 0;
-  font-style: italic;
-}
-
-/* Submit Button */
-.booking-submit-btn {
+  line-height: 1.6;
+  max-width: 400px;
   width: 100%;
-  padding: 1.125rem 2rem;
+  text-align: left;
+  transition: all 0.3s ease; /* smooth updates */
+  min-height: 130px; /* prevent container from vibrating */
+}
+
+.booking-summary p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: hsl(20, 14%, 20%);
+}
+
+.booking-summary b {
+  color: hsl(20, 14%, 10%);
+}
+
+/* Special Request Textarea */
+.booking-field-full textarea {
+  max-width: 400px;
+  width: 100%;
+  min-height: 120px; /* make it a bit bigger */
+  padding: 0.75rem 1rem;
+  border: 1px solid hsl(40, 20%, 85%);
+  border-radius: 0.5rem;
+  background: hsl(38, 95%, 98%); /* subtle background */
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+/* Book Now Button */
+.booking-submit-btn {
+  max-width: 400px;
+  width: 100%;
+  display: block;
+  margin: 1.5rem auto 0 auto;
+  padding: 1rem 1.5rem;
   background: hsl(38, 92%, 50%);
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 0.5rem;
   font-size: 1.125rem;
   font-weight: 700;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   cursor: pointer;
+  text-transform: uppercase;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.3);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
 }
 
 .booking-submit-btn:hover {
   background: hsl(38, 92%, 45%);
-  box-shadow: 0 6px 20px hsla(38, 92%, 50%, 0.4);
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px hsla(38, 92%, 50%, 0.4);
 }
 
 .booking-submit-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.3);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .booking-hero {
-    height: 300px;
-  }
-
-  .booking-hero-title {
-    font-size: 2.5rem;
-  }
-
-  .booking-hero-subtitle {
-    font-size: 1.125rem;
-  }
-
-  .booking-container {
-    margin-top: -60px;
-    padding: 0 1rem;
-  }
-
-  .booking-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .booking-title {
-    font-size: 1.875rem;
-  }
-
   .booking-row {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    flex-direction: column;
   }
 
-  .booking-form {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .booking-hero-title {
-    font-size: 2rem;
+  .booking-field-full,
+  .booking-field {
+    max-width: 100%;
   }
 
-  .booking-card {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .booking-title {
-    font-size: 1.625rem;
+  .booking-summary {
+    max-width: 100%;
   }
 
   .booking-submit-btn {
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
+    max-width: 100%;
   }
 
-  .summary-row.total {
-    font-size: 1.125rem;
-  }
-
-  .summary-row.total .summary-value {
-    font-size: 1.25rem;
+  .booking-field-full textarea {
+    min-height: 100px;
   }
 }

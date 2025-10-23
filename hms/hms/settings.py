@@ -106,3 +106,6 @@ SUPABASE_URL = config('VITE_SUPABASE_URL', default='')
 SUPABASE_PUBLISHABLE_KEY = config('VITE_SUPABASE_PUBLISHABLE_KEY', default='')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Redirect non-logged-in users to the signin page
+LOGIN_URL = 'signin'

@@ -34,42 +34,38 @@ body {
   box-shadow: 0 4px 16px rgba(38, 92, 50, 0.15);
 }
 
-/* ===== Signin Container (Card with border) ===== */
+/* ===== Signin Container & Card ===== */
 .signin-container {
   width: 100%;
-  max-width: 600px;  /* Wider width */
+  max-width: 500px;
   border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  padding: 2rem;      /* Padding around card */
+  padding: 2rem;
 }
 
-/* ===== Signin Card ===== */
 .signin-card {
-  width: 100%;
-  padding: 3rem 2.5rem; /* Bigger padding for spacious feel */
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
+  background: #fff;
   border-radius: 0.75rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 /* ===== Title ===== */
 .signin-card h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  font-size: 2rem;     /* Bigger title */
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 2rem; /* More spacing after title */
+  margin-bottom: 1.5rem;
 }
 
 /* ===== Form ===== */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; /* More spacing between inputs */
+  gap: 1rem;
 }
 
 label {
@@ -80,7 +76,7 @@ label {
 
 input[type="text"], input[type="email"], input[type="password"] {
   width: 100%;
-  padding: 0.85rem 1rem; /* Bigger input fields */
+  padding: 0.85rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid hsl(40, 20%, 85%);
   font-size: 0.95rem;
@@ -138,6 +134,27 @@ input:focus {
   color: #f59e0b;
 }
 
+/* ===== Alert Message Scoped to Signin Page ===== */
+.signin-container .alert,
+.signin-card .alert {
+  background-color: #ffdddd !important;
+  color: #d8000c !important;
+  border: 1px solid #d8000c !important;
+  padding: 12px 20px !important;
+  margin-bottom: 20px !important;
+  border-radius: 5px !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  text-align: center !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  animation: fadeIn 0.4s ease-in-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
   .signin-container {
@@ -151,11 +168,7 @@ input:focus {
 
   .signin-card h2 {
     font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  form {
-    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .back-home-btn {

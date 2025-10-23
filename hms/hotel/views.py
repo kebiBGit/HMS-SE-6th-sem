@@ -3,7 +3,11 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Booking, ContactMessage
+from datetime import datetime
+from django.http import JsonResponse
+from .models import Booking, ContactMessage,Room, BookingItem
+
+
 
 # ------------------- Static Pages -------------------
 def home(request):
@@ -81,6 +85,7 @@ def signin(request):
     if request.method == 'POST':
         identifier = request.POST.get('identifier')  # username or email
         password = request.POST.get('password')
+        next_url = request.POST.get('next') 
 
         # Check if identifier is email
         try:
@@ -92,12 +97,18 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
+            # Redirect to next if available
+            if next_url:
+                return redirect(next_url)
             return redirect('profile')
         else:
             messages.error(request, "Invalid username/email or password.")
             return redirect('signin')
 
-    return render(request, 'pages/signin.html')
+    # If user comes with ?next=..., pass it to template
+    next_url = request.GET.get('next', '')
+    return render(request, 'pages/signin.html', {'next': next_url})
+
 
 
 def logout(request):
@@ -108,31 +119,85 @@ def logout(request):
 # ------------------- Profile -------------------
 @login_required
 def profile(request):
-    bookings = Booking.objects.filter(user=request.user, status__in=['ACTIVE', 'COMPLETED']).order_by('-check_in')
+    bookings = Booking.objects.filter(user=request.user).order_by('id')
     return render(request, 'pages/profile.html', {'bookings': bookings})
 
 # ------------------- Booking Page -------------------
 @login_required
 def booking(request):
+    # If AJAX request: fetch rooms by type (for dynamic dropdown)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        room_type = request.GET.get('room_type')
+        rooms = Room.objects.filter(room_type=room_type, is_available=True)
+        room_data = [
+            {
+                'room_number': room.room_number,
+                'price_per_night': float(room.price_per_night),
+                'max_occupancy': room.max_occupancy,
+                'is_available': not room.is_available
+            }
+            for room in rooms
+        ]
+        return JsonResponse({'rooms': room_data})
+
+    # POST = booking form submission
     if request.method == 'POST':
-        room_type = request.POST.get('room_type')
         check_in = request.POST.get('check_in')
         check_out = request.POST.get('check_out')
-        guests = request.POST.get('guests')
+        room_type = request.POST.get('room_type')
+        room_numbers = request.POST.getlist('room_number')
+        special_request = request.POST.get('special_request', '')
 
-        if not room_type or not check_in or not check_out or not guests:
-            messages.error(request, "All fields are required.")
+        if not (check_in and check_out and room_type and room_numbers):
+            messages.error(request, "Please fill in all fields.")
             return redirect('booking')
 
-        Booking.objects.create(
-            user=request.user,
-            room_type=room_type,
-            check_in=check_in,
-            check_out=check_out,
-            guests=guests,
-            status='ACTIVE'
-        )
-        messages.success(request, "Booking successful!")
-        return redirect('profile')
+        # Convert date strings to date objects
+        check_in_date = datetime.strptime(check_in, "%Y-%m-%d").date()
+        check_out_date = datetime.strptime(check_out, "%Y-%m-%d").date()
+        total_days = (check_out_date - check_in_date).days or 1
 
-    return render(request, 'pages/booking.html')
+        # Get all room objects
+        selected_rooms = Room.objects.filter(room_number__in=room_numbers)
+        if not selected_rooms.exists():
+            messages.error(request, "Selected rooms are not available.")
+            return redirect('booking')
+
+        # Calculate total
+        total_amount = sum(r.price_per_night for r in selected_rooms) * total_days
+
+        # Create Booking
+        booking = Booking.objects.create(
+            user=request.user,
+            check_in=check_in_date,
+            check_out=check_out_date,
+            total_amount=total_amount,
+            special_request=special_request,
+        )
+        unavailable = BookingItem.objects.filter(
+        room__room_number__in=room_numbers,
+        booking__check_in__lt=check_out_date,
+        booking__check_out__gt=check_in_date,
+        booking__status='ACTIVE'
+)
+
+
+        if unavailable.exists():
+            return JsonResponse({"error": "Some rooms are already booked for these dates."}, status=400)
+        else:
+        # Create BookingItems
+            for room in selected_rooms:
+                BookingItem.objects.create(
+                    booking=booking,
+                    room=room,
+                    price_per_night=room.price_per_night,
+                )
+                room.is_available = False
+                room.save()
+
+            messages.success(request, "Your booking has been confirmed!")
+            return redirect('profile')
+
+    # GET: show booking form
+    room_types = Room.ROOM_TYPES
+    return render(request, 'pages/booking.html', {'room_types': room_types})
