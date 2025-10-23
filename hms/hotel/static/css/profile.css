@@ -150,3 +150,33 @@
 	.logout-btn { top: 0.75rem; right: 0.75rem; font-size: 0.85rem; padding: 0.375rem 0.75rem; }
 	.profile-card { padding: 1.5rem; }
 }
+/* Center Book Now button when no bookings */
+.book-more-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Keep Book Again button in single row inside table */
+.bookings-table .action-cell {
+  white-space: nowrap;
+}
+
+/* Book More / Book Again button */
+.book-more-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: hsl(38, 92%, 50%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.book-more-btn:hover {
+  background-color: hsl(38, 92%, 45%);
+  transform: translateY(-2px);
+}
+
+

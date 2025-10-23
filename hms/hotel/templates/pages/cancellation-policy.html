@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cancellation Policy - Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cancellation.css' %}">
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-home-btn">← Back to Home</a>
+
+<div class="policy-body">
+  <main class="policy-main">
+    <div class="policy-container">
+      <header class="policy-header">
+        <h1 class="policy-title">Cancellation Policy</h1>
+        <p class="policy-subtitle">Effective: October 22, 2025</p>
+      </header>
+
+      <div class="policy-content">
+        <section class="policy-intro">
+          <p>At <strong>Himalayan Haven</strong>, we understand that travel plans can change. Below is our cancellation policy for all bookings made through our website.</p>
+        </section>
+
+        <section class="policy-section highlight-section">
+          <h2>✓ Free Cancellation Window</h2>
+          <p>You may cancel your reservation <strong>free of charge up to 24 hours</strong> before your scheduled check-in time.</p>
+          <p>A full refund will be issued to your original payment method within <strong>5–7 business days</strong>.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Late Cancellations</h2>
+          <p>If you cancel <strong>less than 24 hours before check-in</strong>, you will be charged a cancellation fee equal to <strong>one night's stay</strong>.</p>
+        </section>
+
+        <section class="policy-section warning-section">
+          <h2>⚠ No-Show Policy</h2>
+          <p>If you do not show up on the day of your reservation and do not notify us in advance, the <strong>full amount of the reservation will be charged</strong>, and no refund will be issued.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Modification Policy</h2>
+          <p>You may modify your booking (change dates or room type) up to <strong>24 hours before check-in</strong>, subject to availability and possible rate adjustments.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>How to Cancel</h2>
+          <p>To cancel or modify your reservation, please contact us via:</p>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:info@himalayanhaven.com">info@himalayanhaven.com</a></li>
+            <li><strong>Phone:</strong> +977-9812345678</li>
+          </ul>
+          <p>Or log into your account and manage your booking online.</p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Group Bookings</h2>
+          <p>Different cancellation policies may apply to group bookings <strong>(5 or more rooms)</strong>. Please contact us directly for details.</p>
+        </section>
+
+        <section class="policy-section important-section">
+          <h2>⚡ Non-Refundable Rates</h2>
+          <p>Some discounted rates may be marked as <strong>non-refundable</strong> at the time of booking. These bookings cannot be canceled or refunded, regardless of notice period.</p>
+        </section>
+
+        <div class="policy-footer">
+          <p>If you have any questions about our cancellation policy, feel free to reach out to us. We're here to help!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

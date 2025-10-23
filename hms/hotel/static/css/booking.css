@@ -1,0 +1,195 @@
+/* === Booking Form Integration === */
+.booking-container {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 28px hsla(0, 0%, 0%, 0.12);
+  border: 1px solid hsl(40, 20%, 90%);
+  margin: 3rem auto 5rem auto;
+  max-width: 700px; /* form width */
+}
+
+.booking-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Row Layout for check-in / check-out */
+.booking-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.booking-row .booking-field {
+  flex: 1;
+  min-width: 140px;
+  max-width: 48%;
+}
+
+/* Fields */
+.booking-field,
+.booking-field-full {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.booking-field-full {
+  max-width: 400px; /* limit width for selects and textarea */
+}
+
+/* Labels */
+.booking-field label,
+.booking-field-full label {
+  font-weight: 600;
+  color: hsl(20, 14%, 15%);
+  font-size: 0.9375rem;
+}
+
+/* Inputs */
+.booking-field input,
+.booking-field-full select,
+.booking-field-full textarea {
+  padding: 0.6rem 0.9rem;
+  border: 2px solid hsl(40, 20%, 85%);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: hsl(20, 14%, 15%);
+  background: white;
+  transition: all 0.3s ease; /* smooth transition for focus and size */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking-field input:focus,
+.booking-field-full select:focus,
+.booking-field-full textarea:focus {
+  outline: none;
+  border-color: hsl(38, 92%, 50%);
+  box-shadow: 0 0 0 3px hsla(38, 92%, 50%, 0.15);
+}
+
+/* Multi-select Room Numbers */
+.booking-field-full select[multiple] {
+  padding: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+  transition: all 0.3s ease; /* smooth transition */
+  background: hsl(38, 95%, 98%); /* subtle background for better UI */
+  border-radius: 0.5rem;
+  border: 1px solid hsl(40, 20%, 85%);
+}
+
+/* Options */
+.booking-field-full option {
+  padding: 0.3rem 0.5rem;
+}
+
+.booking-field-full option:checked {
+  background: hsl(38, 92%, 50%);
+  color: white;
+}
+
+.hint {
+  font-size: 0.8125rem;
+  color: hsl(215, 16%, 56%);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Booking Summary */
+.booking-summary {
+  background: hsl(38, 95%, 98%);
+  border: 2px solid hsl(38, 92%, 50%);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  line-height: 1.6;
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease; /* smooth updates */
+  min-height: 130px; /* prevent container from vibrating */
+}
+
+.booking-summary p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: hsl(20, 14%, 20%);
+}
+
+.booking-summary b {
+  color: hsl(20, 14%, 10%);
+}
+
+/* Special Request Textarea */
+.booking-field-full textarea {
+  max-width: 400px;
+  width: 100%;
+  min-height: 120px; /* make it a bit bigger */
+  padding: 0.75rem 1rem;
+  border: 1px solid hsl(40, 20%, 85%);
+  border-radius: 0.5rem;
+  background: hsl(38, 95%, 98%); /* subtle background */
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+/* Book Now Button */
+.booking-submit-btn {
+  max-width: 400px;
+  width: 100%;
+  display: block;
+  margin: 1.5rem auto 0 auto;
+  padding: 1rem 1.5rem;
+  background: hsl(38, 92%, 50%);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.3);
+}
+
+.booking-submit-btn:hover {
+  background: hsl(38, 92%, 45%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px hsla(38, 92%, 50%, 0.4);
+}
+
+.booking-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .booking-row {
+    flex-direction: column;
+  }
+
+  .booking-field-full,
+  .booking-field {
+    max-width: 100%;
+  }
+
+  .booking-summary {
+    max-width: 100%;
+  }
+
+  .booking-submit-btn {
+    max-width: 100%;
+  }
+
+  .booking-field-full textarea {
+    min-height: 100px;
+  }
+}

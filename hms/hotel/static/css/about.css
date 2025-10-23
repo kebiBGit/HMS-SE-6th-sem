@@ -180,3 +180,250 @@
   color: hsl(var(--muted-foreground));
   margin-top: 1rem;
 }
+
+/* Developer Team Section */
+.developer-team-section {
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+  padding-top: 4rem;
+  border-top: 2px solid hsl(40, 20%, 90%);
+}
+
+.project-description {
+  max-width: 56rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+  padding: 2rem;
+  background: hsl(38, 95%, 98%);
+  border-radius: 0.75rem;
+  border-left: 4px solid hsl(38, 92%, 50%);
+}
+
+.project-description p {
+  line-height: 1.8;
+  color: hsl(20, 14%, 30%);
+  font-size: 1.0625rem;
+}
+
+.developer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.developer-card {
+  background: white;
+  border: 1px solid hsl(40, 20%, 90%);
+  border-radius: 0.75rem;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.06);
+  flex: 0 0 auto;
+  width: 220px;
+}
+
+.developer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px hsla(38, 92%, 50%, 0.15);
+  border-color: hsl(38, 92%, 50%);
+}
+
+.developer-photo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid hsl(38, 92%, 50%);
+  box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.2);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.developer-card:hover .developer-photo {
+  border-color: hsl(38, 92%, 45%);
+  box-shadow: 0 6px 16px hsla(38, 92%, 50%, 0.3);
+  transform: scale(1.05);
+}
+
+.developer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.developer-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: hsl(20, 14%, 10%);
+  margin: 0 0 0.5rem 0;
+}
+
+.developer-role {
+  color: hsl(215, 16%, 46%);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0 0 1.125rem 0;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: hsl(210, 100%, 50%);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px hsla(210, 100%, 50%, 0.3);
+}
+
+.linkedin-link:hover {
+  background: hsl(210, 100%, 45%);
+  box-shadow: 0 4px 12px hsla(210, 100%, 50%, 0.4);
+  transform: translateY(-2px);
+}
+
+.linkedin-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px hsla(210, 100%, 50%, 0.3);
+}
+
+.linkedin-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.github-section {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: linear-gradient(135deg, hsl(40, 95%, 98%) 0%, hsl(40, 85%, 96%) 100%);
+  border-radius: 0.75rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: hsl(20, 14%, 10%);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.2);
+}
+
+.github-link:hover {
+  background: hsl(20, 14%, 5%);
+  box-shadow: 0 6px 20px hsla(0, 0%, 0%, 0.3);
+  transform: translateY(-3px);
+}
+
+.github-link:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.2);
+}
+
+.github-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .developer-grid {
+    gap: 2rem;
+  }
+
+  .developer-card {
+    width: 200px;
+  }
+
+  .developer-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .developer-grid {
+    gap: 1.5rem;
+  }
+
+  .developer-card {
+    width: 180px;
+    padding: 1.5rem 1rem;
+  }
+
+  .developer-photo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .developer-name {
+    font-size: 1.25rem;
+  }
+
+  .project-description {
+    padding: 1.5rem;
+  }
+
+  .github-link {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .developer-grid {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .developer-card {
+    width: 160px;
+  }
+
+  .developer-photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .developer-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .developer-card {
+    width: 220px;
+  }
+
+  .developer-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .developer-team-section {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+}

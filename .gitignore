@@ -49,3 +49,6 @@ Thumbs.db
 # IDEs
 .vscode/
 .idea/
+
+hotel_room.json
+data.json

@@ -1,39 +1,79 @@
+{% extends "base_message.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In • Himalayan Haven</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/signin.css' %}">
-</head>
-<body>
-  <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
-  
-  <div style="width: 100%; max-width: 32rem;">
-    <h2>Sign In</h2>
 
-    {% if messages %}
-      {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-      {% endfor %}
-    {% endif %}
+{% block title %}Sign In • Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signin-container">
+
+  <!-- Back to Home Button -->
+  <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
+
+  <!-- Alert Message -->
+ {% if next %}
+  <p style="
+      background-color: #ffdddd; 
+      color: #d8000c; 
+      border: 1px solid #d8000c; 
+      padding: 12px 20px; 
+      margin-bottom: 20px; 
+      border-radius: 5px; 
+      font-weight: 500; 
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+  " id="alertMessage">
+    Please Sign In first to book a room.
+  </p>
+{% endif %}
+
+  <!-- Signin Card -->
+  <div class="signin-card" role="region" aria-labelledby="signinTitle">
+    <h2 id="signinTitle">Sign In</h2>
 
     <form method="POST" action="{% url 'signin' %}">
       {% csrf_token %}
-      <label>Email</label>
-      <input type="email" name="email" required placeholder="you@example.com"><br>
 
-      <label>Password</label>
-      <input type="password" name="password" required placeholder="••••••••"><br>
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+      {% endif %}
 
-      <button type="submit">Sign In</button>
+      <label for="identifier">Username/Email</label>
+      <input id="identifier" name="identifier" type="text" required placeholder="john123 / you@example.com">
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required placeholder="••••••••">
+
+      <button type="submit" class="primary-btn">Sign In</button>
     </form>
 
-    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    <p class="alt-link">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
   </div>
-</body>
-</html>
+
+</div>
+<script>
+  const alertEl = document.getElementById('alertMessage');
+  if(alertEl){
+    // Show after 0.5s for natural UI feel
+    setTimeout(() => {
+      alertEl.style.opacity = '1';
+      alertEl.style.transform = 'translateY(0)';
+    }, 500);
+
+    // Fade out after 3s from the moment it appears
+    setTimeout(() => {
+      alertEl.style.opacity = '0';
+      alertEl.style.transform = 'translateY(-5px)';
+    }, 4500);
+  }
+</script>
+
+{% endblock %}
+
+

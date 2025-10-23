@@ -1,56 +1,28 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import User
 from django.utils import timezone
-
-
-
-# -------------------
-# Custom User
-# -------------------
-class User(AbstractUser):
-    email = models.EmailField(unique=True)
-    full_name = models.CharField(max_length=100, blank=True)
-
-    # Override username field
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']  # still required for compatibility
-
-    groups = models.ManyToManyField(
-        Group,
-        related_name="hotel_users",
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="hotel_user_permissions",
-        blank=True
-    )
-
-    def __str__(self):
-        return self.full_name or self.email
-
 
 # -------------------
 # Room Model
 # -------------------
 class Room(models.Model):
     ROOM_TYPES = [
-        ('SINGLE', 'Single'),
-        ('DOUBLE', 'Double'),
-        ('SUITE', 'Suite'),
-        ('DELUXE', 'Deluxe'),
-        ('PRESIDENTIAL', 'Presidential'),
+        ('SINGLE', 'Classic Single Room'),
+        ('DOUBLE', 'Comfort Double Room'),
+        ('DELUXE', 'Deluxe Room'),
+        ('EXECUTIVE', 'Executive Suite'),
+        ('PRESIDENTIAL', 'Presidential Suite'),
     ]
 
+    room_type = models.CharField(max_length=25, choices=ROOM_TYPES)
     room_number = models.CharField(max_length=10, unique=True)
-    room_type = models.CharField(max_length=15, choices=ROOM_TYPES)
     price_per_night = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField(blank=True)
-    max_occupancy = models.PositiveIntegerField(default=2)
+    max_occupancy = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.room_number} ({self.room_type})"
+        return f"{self.room_type}:{self.room_number}"
 
 
 # -------------------
@@ -69,12 +41,11 @@ class Booking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ACTIVE')
     canceled_at = models.DateTimeField(blank=True, null=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    notes = models.TextField(blank=True)
-    
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    special_request = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Booking #{self.id} by {self.user.email}"
+        return f"Booking #{self.id} by {self.user.username}"
 
     def is_past_booking(self):
         return self.check_out < timezone.localdate()

@@ -1,0 +1,231 @@
+/* Privacy Policy Page Styles */
+
+.privacy-body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, hsl(40, 95%, 98%) 0%, hsl(40, 85%, 96%) 100%);
+    padding: 6rem 1.5rem 3rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.back-home-btn:hover {
+    background: hsl(38, 92%, 45%);
+    box-shadow: 0 4px 12px hsla(38, 92%, 50%, 0.4);
+    transform: translateY(-2px);
+}
+
+.back-home-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px hsla(38, 92%, 50%, 0.3);
+}
+
+.privacy-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.privacy-container {
+    max-width: 56rem;
+    width: 100%;
+    background: white;
+    border-radius: 0.75rem;
+    border: 1px solid hsl(40, 20%, 90%);
+    box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.08);
+    padding: 3rem 2.5rem;
+}
+
+.privacy-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid hsl(38, 92%, 50%);
+}
+
+.privacy-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: hsl(20, 14%, 10%);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+.privacy-header .subtitle {
+    font-size: 1.125rem;
+    color: hsl(215, 16%, 46%);
+    margin: 0;
+    font-weight: 500;
+}
+
+.privacy-intro {
+    background: hsl(142, 72%, 97%);
+    border-left: 4px solid hsl(142, 72%, 40%);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.privacy-intro p {
+    margin: 0 0 0.75rem 0;
+    line-height: 1.7;
+    color: hsl(20, 14%, 20%);
+}
+
+.privacy-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: hsl(0, 0%, 99%);
+    border-radius: 0.5rem;
+    border: 1px solid hsl(40, 20%, 92%);
+}
+
+.privacy-section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.625rem;
+    font-weight: 600;
+    color: hsl(20, 14%, 15%);
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.01em;
+}
+
+.privacy-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(20, 14%, 20%);
+    margin: 1.25rem 0 0.75rem 0;
+}
+
+.privacy-section p {
+    line-height: 1.7;
+    color: hsl(20, 14%, 30%);
+    margin: 0 0 1rem 0;
+}
+
+.privacy-section p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section ul {
+    margin: 0.75rem 0 0 0;
+    padding-left: 1.5rem;
+}
+
+.privacy-section li {
+    line-height: 1.8;
+    color: hsl(20, 14%, 30%);
+    margin-bottom: 0.5rem;
+}
+
+.privacy-section li:last-child {
+    margin-bottom: 0;
+}
+
+/* Color-coded sections for emphasis */
+.highlight-section {
+    background: hsl(142, 72%, 97%);
+    border-left: 4px solid hsl(142, 72%, 40%);
+}
+
+.warning-section {
+    background: hsl(0, 84%, 98%);
+    border-left: 4px solid hsl(0, 84%, 60%);
+}
+
+.warning-section h2 {
+    color: hsl(0, 84%, 35%);
+}
+
+.important-section {
+    background: hsl(38, 95%, 98%);
+    border-left: 4px solid hsl(38, 92%, 50%);
+}
+
+.important-section h2 {
+    color: hsl(38, 92%, 30%);
+}
+
+.contact-list {
+    background: hsl(210, 100%, 97%);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(210, 100%, 85%);
+    list-style: none;
+    margin: 1rem 0 0 0;
+}
+
+.contact-list li {
+    margin-bottom: 0.5rem;
+    color: hsl(20, 14%, 25%);
+}
+
+.contact-list li:last-child {
+    margin-bottom: 0;
+}
+
+.contact-list strong {
+    color: hsl(210, 100%, 40%);
+    font-weight: 600;
+}
+
+.privacy-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid hsl(40, 20%, 90%);
+    text-align: center;
+}
+
+.privacy-footer p {
+    margin: 0 0 0.75rem 0;
+    color: hsl(215, 16%, 46%);
+    line-height: 1.6;
+}
+
+.privacy-footer .last-updated {
+    font-size: 0.875rem;
+    color: hsl(215, 16%, 56%);
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .privacy-body {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .privacy-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .privacy-header h1 {
+        font-size: 2rem;
+    }
+
+    .privacy-section {
+        padding: 1.25rem;
+    }
+
+    .back-home-btn {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .privacy-section h2 {
+        font-size: 1.375rem;
+    }
+
+    .privacy-container {
+        padding: 1.5rem 1.25rem;
+    }
+}

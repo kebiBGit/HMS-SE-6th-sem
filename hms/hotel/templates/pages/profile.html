@@ -1,18 +1,13 @@
+{% extends "base_message.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile • Himalayan Haven</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/site.css' %}">
-  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-  <link rel="icon" href="{% static 'images/hotel-solid-full.svg' %}" type="image/svg+xml" />
-</head>
-<body class="profile-body">
+
+{% block title %}Profile • Himalayan Haven{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
   <a href="{% url 'home' %}" class="back-home-btn">Back to Home</a>
   <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
 
@@ -23,49 +18,74 @@
           {{ request.user.first_name|default:request.user.username|first|upper }}
         </div>
         <div class="profile-headings">
-          <h1 class="profile-title">{{ request.user.first_name|default:request.user.username }}</h1>
+          <h1 class="profile-title">{{ request.user.first_name }} ({{ request.user.username }})</h1>
           <p class="profile-subtitle">{{ request.user.email }}</p>
         </div>
       </div>
 
-      <section class="profile-section">
-        <h2 class="section-title">Your Bookings</h2>
-        {% if bookings %}
-          <div class="table-wrapper">
-            <table class="bookings-table">
-              <thead>
-                <tr>
-                  <th>Booking ID</th>
-                  <th>Room No.</th>
-                  <th>Check-in</th>
-                  <th>Check-out</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for booking in bookings %}
-                <tr>
-                  <td>{{ booking.id }}</td>
-                  <td>
-                    {% for item in booking.items.all %}
-                      {{ item.room.room_number }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                  </td>
-                  <td>{{ booking.check_in }}</td>
-                  <td>{{ booking.check_out }}</td>
-                  <td>
-                    <span class="status-badge status-{{ booking.status|slugify }}">{{ booking.status }}</span>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        {% else %}
-          <p class="muted">No bookings yet.</p>
-        {% endif %}
-      </section>
+<section class="profile-section">
+  <h2 class="section-title">Your Bookings</h2>
+  {% if bookings %}
+    <div class="table-wrapper">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Room Type</th>
+            <th>Room No.</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Total (NPR.)</th>
+            <th>Status</th>
+            <th>Special Request</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>
+            <td>{{ booking.id }}</td>
+            <td>
+              {% for item in booking.items.all %}
+                {{ item.room.get_room_type_display }}{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </td>
+            <td>
+              {% for item in booking.items.all %}
+                {{ item.room.room_number }}{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </td>
+            <td>{{ booking.check_in }}</td>
+            <td>{{ booking.check_out }}</td>
+            <td>{{ booking.total_amount }}</td>
+            <td>
+              <span class="status-badge status-{{ booking.status|slugify }}">{{ booking.status }}</span>
+            </td>
+            <td>
+              {% if booking.special_request %}
+                {{ booking.special_request }}
+              {% else %}
+                <span class="muted">—</span>
+              {% endif %}
+            </td>
+            <td class="action-cell">
+              {% if booking.status == 'CANCELED' %}
+                <a href="{% url 'booking' %}" class="book-more-btn">Book Again</a>
+              {% else %}
+                <span class="muted">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-  </main>
-</body>
-</html>
+  {% else %}
+  <p class="muted">No bookings yet.</p>
+    <div class="book-more-center">
+      <a href="{% url 'booking' %}" class="book-more-btn">Book Now</a>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}
+
