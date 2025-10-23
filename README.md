@@ -2,6 +2,8 @@
 
 A full-featured **Hotel Management System** built with  **Django** , designed to manage hotel rooms, bookings, users, and profiles efficiently.
 
+This is a 6th semester software engineering course developed by Arun Chaudary,Jenish Ghimire,Bibek Kafle and Deepak Tamang of Amrit Science Campus students.
+
 It includes a smooth UI, real-time booking validation, and role-based access for admin and normal users.
 
 ## 🚀 Features
