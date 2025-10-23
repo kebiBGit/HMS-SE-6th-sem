@@ -59,18 +59,17 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 if 'RENDER_DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ['RENDER_DATABASE_URL'], engine='mysql.connector.django')
+        'default': dj_database_url.config(default=os.environ['RENDER_DATABASE_URL'])
     }
 else:
-    # Local development
     DATABASES = {
         'default': {
-            'ENGINE': 'mysql.connector.django',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
             'HOST': config('DB_HOST', default='127.0.0.1'),
-            'PORT': config('DB_PORT', default='3306'),
+            'PORT': config('DB_PORT', default='5432'),
         }
     }
 
