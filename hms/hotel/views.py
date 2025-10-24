@@ -9,7 +9,7 @@ from .models import Booking, ContactMessage,Room, BookingItem
 
 
 
-# ------------------- Static Pages -------------------
+# ------------------- Static Pages ------------------
 def home(request):
     return render(request, 'pages/home.html')
 
